@@ -1,3 +1,5 @@
+##### NOTE: Some formatting was lost when copied from docx
+
 # Call of 2D Zombies
 ### A 2D Zombie Survival Game
 
