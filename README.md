@@ -10,29 +10,29 @@ The framework creates the game window, sets up the method to draw to the window,
 ## Classes
 1.	Window
 
-..1.  Creates a full screen window and places an instance of Framework on it
+Creates a full screen window and places an instance of Framework on it
 
 2.	Canvas
 
-..* Canvas extends JPanel
-..1.  Listens for and tracks keyboard and mouse events
-..2.  Handles graphics and drawing methods
+Canvas extends JPanel
+Listens for and tracks keyboard and mouse events
+Handles graphics and drawing methods
 
 3.	Framework
 
-..1.  Framework extends Canvas
-..2.  Is the main game loop that updates and draws the Game
-..3.  Has an instance of the Game class
-..4.  Handles a few mouse events
+Framework extends Canvas
+Is the main game loop that updates and draws the Game
+Has an instance of the Game class
+Handles a few mouse events
 
 4.	Game
 
-..1.  Has all game objects
-..2.  Tracks game statistics
-..3.  Handles updating game objects, components, and displays
-..4.	Handles collision detection
-..5.  Handles drawing game objects and display
-..6.  Handles all other gameplay
+Has all game objects
+Tracks game statistics
+Handles updating game objects, components, and displays
+Handles collision detection
+Handles drawing game objects and display
+Handles all other gameplay
 
 
 ## Features
