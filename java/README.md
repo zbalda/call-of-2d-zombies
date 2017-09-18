@@ -1,4 +1,4 @@
-#### NOTE: The Java version of this game has been depricated. See the [C++ version](https://github.com/zbalda/call-of-2d-zombies/tree/master/c++) for more features.
+#### NOTE: The Java version of this game has been depricated. See the [C++ version](https://github.com/zbalda/call-of-2d-zombies/tree/master/cpp) for more features.
 
 # Call of 2D Zombies
 ### A 2D Zombie Survival Game
