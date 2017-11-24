@@ -1,7 +1,7 @@
 //Using SDL, SDL_image, SDL_ttf, standard IO, strings, and string streams
-#include <SDL.h>
-#include <SDL_image.h>
-#include <SDL_ttf.h>
+#include <SDL2/SDL.h>
+#include <SDL2/SDL_image.h>
+#include <SDL2/SDL_ttf.h>
 #include <stdio.h>
 #include <string>
 #include <sstream>
@@ -101,10 +101,10 @@ bool loadMedia()
 	bool success = true;
 
 	//Open the font
-	gFont = TTF_OpenFont( "22_timing/lazy.ttf", 28 );
+	gFont = TTF_OpenFont( "open-sans/OpenSans-Regular.ttf", 28 );
 	if( gFont == NULL )
 	{
-		printf( "Failed to load lazy font! SDL_ttf Error: %s\n", TTF_GetError() );
+		printf( "Failed to load font! SDL_ttf Error: %s\n", TTF_GetError() );
 		success = false;
 	}
 	else
