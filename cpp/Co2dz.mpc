@@ -1,0 +1,21 @@
+project (Co2dz) {  
+    exename = Co2dz
+    specific (make) {      
+        compile_flags += -std=c++11
+    }
+    
+    Source_Files {
+        main.cpp
+        LTexture.cpp
+    }  
+
+    Header_Files {
+        LTexture.h
+    }
+
+    Template_Files {
+    }
+    
+    Inline_Files {
+    }
+}
