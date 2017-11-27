@@ -1,3 +1,14 @@
+#ifndef _LTEXTURE_H_
+#define _LTEXTURE_H_
+
+//Using SDL, SDL_image, SDL_ttf, standard IO, strings, and string streams
+#include <SDL2/SDL.h>
+#include <SDL2/SDL_image.h>
+#include <SDL2/SDL_ttf.h>
+#include <stdio.h>
+#include <string>
+#include <sstream>
+
 //Texture wrapper class
 class LTexture
 {
@@ -9,11 +20,11 @@ class LTexture
 		~LTexture();
 
 		//Loads image at specified path
-		bool loadFromFile( std::string path );
+		bool loadFromFile( std::string path, SDL_Renderer* renderer );
 
 		#ifdef _SDL_TTF_H
 		//Creates image from font string
-		bool loadFromRenderedText( std::string textureText, SDL_Color textColor );
+		bool loadFromRenderedText( std::string textureText, SDL_Color textColor, TTF_Font * font, SDL_Renderer* renderer );
 		#endif
 
 		//Deallocates texture
@@ -29,7 +40,7 @@ class LTexture
 		void setAlpha( Uint8 alpha );
 
 		//Renders texture at given point
-		void render( int x, int y, SDL_Rect* clip = NULL, double angle = 0.0, SDL_Point* center = NULL, SDL_RendererFlip flip = SDL_FLIP_NONE );
+		void render( int x, int y, SDL_Renderer* renderer, SDL_Rect* clip = NULL, double angle = 0.0, SDL_Point* center = NULL, SDL_RendererFlip flip = SDL_FLIP_NONE );
 
 		//Gets image dimensions
 		int getWidth();
@@ -43,3 +54,5 @@ class LTexture
 		int mWidth;
 		int mHeight;
 };
+
+#endif  // !defined _LTEXTURE_H_

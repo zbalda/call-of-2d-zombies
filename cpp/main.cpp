@@ -113,7 +113,7 @@ bool loadMedia()
 		SDL_Color textColor = { 0, 0, 0, 255 };
 
 		//Load prompt texture
-		if( !gPromptTextTexture.loadFromRenderedText( "Press Enter to Reset Start Time.", textColor ) )
+		if( !gPromptTextTexture.loadFromRenderedText( "Press Enter to Reset Start Time.", textColor, gFont, gRenderer ) )
 		{
 			printf( "Unable to render prompt texture!\n" );
 			success = false;
@@ -199,7 +199,7 @@ int main( int argc, char* args[] )
 				timeText << "Milliseconds since start time " << SDL_GetTicks() - startTime;
 
 				//Render text
-				if( !gTimeTextTexture.loadFromRenderedText( timeText.str().c_str(), textColor ) )
+				if( !gTimeTextTexture.loadFromRenderedText( timeText.str().c_str(), textColor, gFont, gRenderer ) )
 				{
 					printf( "Unable to render time texture!\n" );
 				}
@@ -209,8 +209,8 @@ int main( int argc, char* args[] )
 				SDL_RenderClear( gRenderer );
 
 				//Render textures
-				gPromptTextTexture.render( ( SCREEN_WIDTH - gPromptTextTexture.getWidth() ) / 2, 0 );
-				gTimeTextTexture.render( ( SCREEN_WIDTH - gPromptTextTexture.getWidth() ) / 2, ( SCREEN_HEIGHT - gPromptTextTexture.getHeight() ) / 2 );
+				gPromptTextTexture.render( ( SCREEN_WIDTH - gPromptTextTexture.getWidth() ) / 2, 0, gRenderer);
+				gTimeTextTexture.render( ( SCREEN_WIDTH - gPromptTextTexture.getWidth() ) / 2, ( SCREEN_HEIGHT - gPromptTextTexture.getHeight() ) / 2, gRenderer );
 
 				//Update screen
 				SDL_RenderPresent( gRenderer );
