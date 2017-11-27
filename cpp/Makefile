@@ -7,7 +7,7 @@
 # this file will be lost the next time it is generated.
 #
 # MPC Command:
-# /home/zbalda/MPC/mwc.pl -type make
+# /home/zbalda/GitHub/MPC/mwc.pl -type make
 #
 #----------------------------------------------------------------------------
 
