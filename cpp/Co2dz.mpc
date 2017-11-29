@@ -1,17 +1,17 @@
-project (Co2dz) {  
+project (Co2dz) {
     exename = Co2dz
 
-    specific (gnuace) {      
+    specific (make) {
         compile_flags += -std=c++11
-        linkflags = -lSDL2
-        linkflags += -lSDL2_image
-        linkflags += -lSDL2_ttf
+        libs = SDL2
+        libs += SDL2_image
+        libs += SDL2_ttf
     }
-    
+
     Source_Files {
         main.cpp
         LTexture.cpp
-    }  
+    }
 
     Header_Files {
         LTexture.h
@@ -19,7 +19,7 @@ project (Co2dz) {
 
     Template_Files {
     }
-    
+
     Inline_Files {
     }
 }
