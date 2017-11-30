@@ -13,9 +13,9 @@
 #include <SDL2/SDL_image.h>
 #include <SDL2/SDL_ttf.h>
 
-// using standard IO, strings, and string streams
-#include <stdio.h>
+// using strings, IO streams, and string streams
 #include <string>
+#include <iostream>
 #include <sstream>
 
 // using Game, Game_Menu, Game_World, and Game_Over
@@ -29,9 +29,6 @@
 #include "game/Co2dz_Game_World.h"
 #include "game/Co2dz_Game_Over.h"
 
-// using LTexture
-#include "game_objects/LTexture.h"
-
 class Framework
 {
 public:
@@ -41,16 +38,21 @@ public:
     /// destructor
     ~Framework (void);
 
+    /**
+     * Start the game.
+     */
+    void start (void);
+
 protected:
     /**
      * Initialize SDL.
      */
-    bool initialize (void);
+    void initialize (void);
 
     /**
      * Load media.
      */
-    bool load (void);
+    void load (void);
 
     /**
      * Free media and close SDL.
@@ -58,17 +60,7 @@ protected:
     void close (void);
 
     /**
-     * Main game loop.
-     */
-    void game_loop (void);
-
-    /**
-     * Draw rendered game to screen.
-     */
-    void draw (void);
-
-    /**
-     * Start new game.
+     * Start a new game.
      */
     void new_game (void);
 
@@ -79,17 +71,24 @@ protected:
 
 private:
     // the window to render to
-    SDL_Window * gWindow;
+    SDL_Window * window_;
 
     // the window renderer
-    SDL_Renderer * gRenderer;
+    SDL_Renderer * renderer_;
 
     // globally used font
-    TTF_Font * gFont;
+    TTF_Font * font_;
 
-    //Scene textures
-    LTexture gTimeTextTexture;
-    LTexture gPromptTextTexture;
+    // game state objects
+    Co2dz_Game_Menu * game_menu_;
+    Co2dz_Game_World * game_world_;
+    Co2dz_Game_Over * game_over_;
+
+    // game states
+    enum game_states_;
+
+    // current game states
+    game_states_ game_state_;
 };
 
 #endif  //  !defined _FRAMEWORK_H_
@@ -171,7 +170,7 @@ int main( int argc, char* args[] )
 					printf( "Unable to render time texture!\n" );
 				}
 
-				//Clear screen
+				// clear screen
 				SDL_SetRenderDrawColor( gRenderer, 0xFF, 0xFF, 0xFF, 0xFF );
 				SDL_RenderClear( gRenderer );
 
@@ -179,8 +178,9 @@ int main( int argc, char* args[] )
 				gPromptTextTexture.render( ( SCREEN_WIDTH - gPromptTextTexture.getWidth() ) / 2, 0, gRenderer);
 				gTimeTextTexture.render( ( SCREEN_WIDTH - gPromptTextTexture.getWidth() ) / 2, ( SCREEN_HEIGHT - gPromptTextTexture.getHeight() ) / 2, gRenderer );
 
-				//Update screen
-				SDL_RenderPresent( gRenderer );
+        //Update screen
+        SDL_RenderPresent( gRenderer );
+
 			}
 		}
 	}
