@@ -10,13 +10,13 @@
 //
 // Co2dz_Game_World
 //
-Co2dz_Game_World::Co2dz_Game_World ()
+Co2dz_Game_World::Co2dz_Game_World (void)
 {
 }
 
 //
 // ~Co2dz_Game_World
 //
-Co2dz_Game_World::~Co2dz_Game_World ()
+Co2dz_Game_World::~Co2dz_Game_World (void)
 {
 }

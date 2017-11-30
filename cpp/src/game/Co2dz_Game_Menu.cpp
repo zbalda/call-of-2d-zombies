@@ -10,13 +10,13 @@
 //
 // Co2dz_Game_Menu
 //
-Co2dz_Game_Menu::Co2dz_Game_Menu ()
+Co2dz_Game_Menu::Co2dz_Game_Menu (void)
 {
 }
 
 //
 // ~Co2dz_Game_Menu
 //
-Co2dz_Game_Menu::~Co2dz_Game_Menu ()
+Co2dz_Game_Menu::~Co2dz_Game_Menu (void)
 {
 }

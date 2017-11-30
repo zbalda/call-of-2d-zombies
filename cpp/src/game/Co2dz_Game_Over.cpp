@@ -10,13 +10,13 @@
 //
 // Co2dz_Game_Over
 //
-Co2dz_Game_Over::Co2dz_Game_Over ()
+Co2dz_Game_Over::Co2dz_Game_Over (void)
 {
 }
 
 //
 // ~Co2dz_Game_Over
 //
-Co2dz_Game_Over::~Co2dz_Game_Over ()
+Co2dz_Game_Over::~Co2dz_Game_Over (void)
 {
 }

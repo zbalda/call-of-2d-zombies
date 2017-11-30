@@ -15,15 +15,15 @@ public:
     virtual ~Game (void) { }
 
     // initialize and load media
-    virtual void initialize () = 0;
-    virtual void load () = 0;
+    virtual void initialize (void) = 0;
+    virtual void load (void) = 0;
 
     // restart the game
-    virtual void restart () = 0;
+    virtual void restart (void) = 0;
 
     // update and draw
-    virtual void update () = 0;
-    virtual void draw () = 0;
+    virtual void update (void) = 0;
+    virtual void draw (void) = 0;
 };
 
 #endif  //  !defined _GAME_H_
