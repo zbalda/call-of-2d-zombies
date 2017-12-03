@@ -59,96 +59,65 @@ void Framework::start (void)
   this->game_loop();
 }
 
-// TODO: Switch to using exception handling
+// TODO: Create and use exception class
 //
 // initialize
 //
 void Framework::initialize (void)
 {
-  // initialization flag
-	bool success = true;
-
 	// initialize SDL
-	if( SDL_Init( SDL_INIT_VIDEO ) < 0 )
-	{
-		printf( "SDL could not initialize! SDL Error: %s\n", SDL_GetError() );
-		success = false;
+	if(SDL_Init(SDL_INIT_VIDEO) < 0) {
+    std::cout << "SDL could not initialize! SDL Error: " << SDL_GetError() << std::endl;
+    throw std::exception();
 	}
-	else
-	{
-		// set texture filtering to linear
-		if( !SDL_SetHint( SDL_HINT_RENDER_SCALE_QUALITY, "1" ) )
-		{
-			printf( "Warning: Linear texture filtering not enabled!" );
-		}
 
-		// create window
-		window_ = SDL_CreateWindow( "Call of 2D Zombies", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN );
-		if( window_ == NULL )
-		{
-			printf( "Window could not be created! SDL Error: %s\n", SDL_GetError() );
-			success = false;
-		}
-		else
-		{
-			// create vsynced renderer for window
-			renderer_ = SDL_CreateRenderer( window_, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC );
-			if( renderer_ == NULL )
-			{
-				printf( "Renderer could not be created! SDL Error: %s\n", SDL_GetError() );
-				success = false;
-			}
-			else
-			{
-				// initialize renderer color
-				SDL_SetRenderDrawColor( renderer_, 0xFF, 0xFF, 0xFF, 0xFF );
+	// set texture filtering to linear
+	if(!SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "1")) {
+		std::cout << "Warning: Linear texture filtering not enabled!" << std::endl;
+	}
 
-				// initialize PNG loading
-				int imgFlags = IMG_INIT_PNG;
-				if( !( IMG_Init( imgFlags ) & imgFlags ) )
-				{
-					printf( "SDL_image could not initialize! SDL_image Error: %s\n", IMG_GetError() );
-					success = false;
-				}
+	// create window
+	this->window_ = SDL_CreateWindow("Call of 2D Zombies", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, DEFAULT_SCREEN_WIDTH, DEFAULT_SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
+	if(this->window_ == NULL) {
+    std::cout << "Window could not be created! SDL Error: " << SDL_GetError() << std::endl;
+    throw std::exception();
+	}
 
-				 // initialize SDL_ttf
-				if( TTF_Init() == -1 )
-				{
-					printf( "SDL_ttf could not initialize! SDL_ttf Error: %s\n", TTF_GetError() );
-					success = false;
-				}
-			}
-		}
+	// create vsynced renderer for window
+	this->renderer_ = SDL_CreateRenderer(this->window_, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
+	if(this->renderer_ == NULL) {
+    std::cout << "Renderer could not be created! SDL Error: " << SDL_GetError() << std::endl;
+    throw std::exception();
+	}
+
+	// initialize renderer color
+	SDL_SetRenderDrawColor(this->renderer_, 0xFF, 0xFF, 0xFF, 0xFF);
+
+	// initialize PNG loading
+	int imgFlags = IMG_INIT_PNG;
+	if(!(IMG_Init(imgFlags) & imgFlags)) {
+    std::cout << "SDL_image could not initialize! SDL_image Error: " << IMG_GetError() << std::endl;
+    throw std::exception();
+	}
+
+	 // initialize SDL_ttf
+	if(TTF_Init() == -1) {
+    std::cout << "SDL_ttf could not initialize! SDL_ttf Error: " << TTF_GetError() << std::endl;
+    throw std::exception();
 	}
 }
 
-// TODO: switch to using exception handling
+// TODO: create and use exception class
 //
 // load
 //
 void Framework::load (void)
 {
-  // loading success flag
-	bool success = true;
-
-	// open the font
-	font_ = TTF_OpenFont( "open-sans/OpenSans-Regular.ttf", 28 );
-	if( font_ == NULL )
-	{
-		printf( "Failed to load font! SDL_ttf Error: %s\n", TTF_GetError() );
-		success = false;
-	}
-	else
-	{
-		// set text color as black
-		SDL_Color textColor = { 0, 0, 0, 255 };
-
-		// load prompt texture
-		if( !gPromptTextTexture.loadFromRenderedText( "Press Enter to Reset Start Time.", textColor, font_, renderer_ ) )
-		{
-			printf( "Unable to render prompt texture!\n" );
-			success = false;
-		}
+  // open the font
+	this->font_ = TTF_OpenFont("open-sans/OpenSans-Regular.ttf", 28);
+	if(this->font_ == NULL) {
+    std::cout << "Failed to load font! SDL_ttf Error: " << TTF_GetError() << std::endl;
+    throw std::exception();
 	}
 }
 
@@ -158,14 +127,14 @@ void Framework::load (void)
 void Framework::close (void)
 {
 	// free global font
-	TTF_CloseFont( font_ );
-	font_ = NULL;
+	TTF_CloseFont(this->font_);
+	this->font_ = NULL;
 
 	// destroy window
-	SDL_DestroyRenderer( renderer_ );
-	SDL_DestroyWindow( window_ );
-	window_ = NULL;
-	renderer_ = NULL;
+	SDL_DestroyRenderer(this->renderer_);
+	SDL_DestroyWindow(this->window_);
+	this->window_ = NULL;
+	this->renderer_ = NULL;
 
 	// quit SDL subsystems
 	TTF_Quit();
@@ -195,17 +164,17 @@ void Framework::game_loop (void)
       case PLAYING :
         this->game_world_->update();
         this->game_world_->draw();
-        break
+        break;
       case OPTIONS :
         this->game_world_->draw();
         this->game_options_->update();
         this->game_options_->draw();
-        break
+        break;
       case GAME_OVER :
         this->game_world->draw();
         this->game_over_->update();
         this->game_over_->draw();
-        break
+        break;
       default:
         std::cout << "Invalid game state case." << std::endl;
     }
