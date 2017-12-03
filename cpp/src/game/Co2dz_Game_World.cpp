@@ -52,6 +52,6 @@ void Co2dz_Game_World::update (void)
 //
 // draw
 //
-void Co2dz_Game_World::draw (SDL_Renderer & renderer)
+void Co2dz_Game_World::draw (SDL_Renderer & renderer, float lag)
 {
 }

@@ -8,10 +8,8 @@
 #ifndef _FRAMEWORK_H_
 #define _FRAMEWORK_H_
 
-// using SDL, SDL_image, and SDL_ttf
+// using SDL
 #include <SDL2/SDL.h>
-#include <SDL2/SDL_image.h>
-#include <SDL2/SDL_ttf.h>
 
 // using strings, IO streams, and string streams
 #include <string>
@@ -50,11 +48,6 @@ protected:
     void initialize (void);
 
     /**
-     * Load media.
-     */
-    void load (void);
-
-    /**
      * Free media and close SDL.
      */
     void close (void);
@@ -80,9 +73,6 @@ private:
 
     // the window renderer
     SDL_Renderer * renderer_;
-
-    // globally used font
-    TTF_Font * font_;
 
     // game state objects
     Co2dz_Game_Menu * game_menu_;

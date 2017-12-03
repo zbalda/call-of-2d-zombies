@@ -28,7 +28,7 @@ public:
 
     // update and draw
     virtual void update (void);
-    virtual void draw (SDL_Renderer & renderer);
+    virtual void draw (SDL_Renderer & renderer, float lag);
 };
 
 #endif  //  !defined _CO2DZ_GAME_WORLD_H_

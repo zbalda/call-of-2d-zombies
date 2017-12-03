@@ -8,11 +8,15 @@
 #ifndef _GAME_H_
 #define _GAME_H_
 
-// using SDL
+// using SDL, SDL_image, and SDL_ttf
 #include <SDL2/SDL.h>
+#include <SDL2/SDL_image.h>
+#include <SDL2/SDL_ttf.h>
 
-// using strings
+// using strings, IO streams, and string streams
 #include <string>
+#include <iostream>
+#include <sstream>
 
 class Game
 {
@@ -29,8 +33,8 @@ public:
 
     // update and draw
     virtual void update (void) = 0;
-    //virtual void draw (SDL_Renderer & renderer, float lag, std::string text) = 0;
-    virtual void draw (SDL_Renderer & renderer) = 0;
+
+    virtual void draw (SDL_Renderer & renderer, float lag) = 0;
 };
 
 #endif  //  !defined _GAME_H_
