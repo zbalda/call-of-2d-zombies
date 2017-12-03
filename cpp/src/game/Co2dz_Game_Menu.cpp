@@ -12,6 +12,8 @@
 //
 Co2dz_Game_Menu::Co2dz_Game_Menu (void)
 {
+	this->initialize();
+	this->load();
 }
 
 //
@@ -56,7 +58,7 @@ void Co2dz_Game_Menu::load (void)
 {
 	// TODO: remove repeated load code between Co2dz Game classes
   // open the font
-	this->font_ = TTF_OpenFont("../resources/open-sans/OpenSans-Regular.ttf", 28);
+	this->font_ = TTF_OpenFont("../resources/open-sans/OpenSans-Regular.ttf", 20);
   if(this->font_ == NULL) {
     std::cout << "Failed to load font! SDL_ttf Error: " << TTF_GetError() << std::endl;
     throw std::exception();
@@ -82,14 +84,41 @@ void Co2dz_Game_Menu::update (void)
 //
 void Co2dz_Game_Menu::draw (SDL_Renderer & renderer, float lag)
 {
-	// set text color as black
+	// set text color to black
 	SDL_Color text_color = { 0, 0, 0, 255 };
 
-	// in memory text stream
+	// set time string
 	std::stringstream time_text;
-
 	time_text.str("");
 	time_text << "Milliseconds since start time " << lag;
 
-	//TODO: render text
+	int w = 0;
+	int h = 0;
+	// render text
+	SDL_Surface * text_surface = TTF_RenderText_Solid(this->font_, time_text.str().c_str(), text_color);
+	if(text_surface != NULL) {
+		SDL_Texture * text_texture = SDL_CreateTextureFromSurface(&renderer, text_surface);
+		if(text_texture == NULL) {
+			std::cout << "Unable to create texture from rendered text! SDL Error: " << SDL_GetError() << std::endl;
+		} else {
+			w = text_surface->w;
+			h = text_surface->h;
+		}
+		SDL_FreeSurface(text_surface);
+
+		SDL_Rect render_quad = { (640 - w) / 2, (480 - h) / 2, text_surface->w, text_surface->h };
+		SDL_Rect * clip = NULL;
+		double angle = 0.0;
+		SDL_Point * center = NULL;
+		SDL_RendererFlip flip = SDL_FLIP_NONE;
+		SDL_RenderCopyEx(&renderer, text_texture, clip, &render_quad, angle, center, flip);
+
+		if( text_texture != NULL )
+		{
+			SDL_DestroyTexture( text_texture );
+			text_texture = NULL;
+		}
+	} else {
+		std::cout << "Unable to render text surface! SDL_ttf Error: " << TTF_GetError() << std::endl;
+	}
 }

@@ -20,6 +20,7 @@ Framework::Framework (void)
   , game_world_ (0)
   , game_over_ (0)
 {
+  // TODO: initialize game objects with screen size
   // create game state objects
   this->game_menu_ = new Co2dz_Game_Menu ();
   this->game_world_ = new Co2dz_Game_World ();
