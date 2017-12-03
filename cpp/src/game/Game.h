@@ -8,6 +8,8 @@
 #ifndef _GAME_H_
 #define _GAME_H_
 
+#include <SDL2/SDL.h>
+
 class Game
 {
 public:
@@ -23,7 +25,7 @@ public:
 
     // update and draw
     virtual void update (void) = 0;
-    virtual void draw (void) = 0;
+    virtual void draw (SDL_Renderer & renderer) = 0;
 };
 
 #endif  //  !defined _GAME_H_

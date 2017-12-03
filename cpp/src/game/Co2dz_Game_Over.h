@@ -18,6 +18,17 @@ public:
 
     /// destructor
     ~Co2dz_Game_Over (void);
+
+    // initialize and load media
+    virtual void initialize (void);
+    virtual void load (void);
+
+    // restart the game
+    virtual void restart (void);
+
+    // update and draw
+    virtual void update (void);
+    virtual void draw (SDL_Renderer & renderer);
 };
 
 #endif  //  !defined _CO2DZ_GAME_OVER_H_

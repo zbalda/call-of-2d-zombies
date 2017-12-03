@@ -32,4 +32,5 @@ Call of 2D Zombies is a two-dimensional zombie survival game.
 `sudo apt install libsdl2-ttf-dev`
 
 
-Possible change for linux: change #include<SDL.h> to #include<SDL2/SDL.h>
+
+`Use #include<SDL2/SDL.h> instead of #include<SDL.h>

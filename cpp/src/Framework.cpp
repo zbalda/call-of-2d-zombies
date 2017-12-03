@@ -20,8 +20,6 @@ Framework::Framework (void)
   , game_menu_ (0)
   , game_world_ (0)
   , game_over_ (0)
-  , game_states_ (0)
-  , game_state_ (0)
 {
   // create game state objects
   this->game_menu_ = new Co2dz_Game_Menu ();
@@ -29,7 +27,7 @@ Framework::Framework (void)
   this->game_over_ = new Co2dz_Game_Over ();
 
   // set game states
-  this->game_states_ = { MAIN_MENU, PLAYING, OPTIONS, GAMEOVER };
+  //this->game_states_ = { MAIN_MENU, PLAYING, OPTIONS, GAMEOVER };
 
   // initialize SDL and load media
   this->initialize();
@@ -110,6 +108,7 @@ void Framework::initialize (void)
 }
 
 // TODO: create and use exception class
+// TODO: possibly remove load class. Should Game's just load media?
 //
 // load
 //

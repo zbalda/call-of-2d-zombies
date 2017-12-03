@@ -11,8 +11,7 @@ int main ( int argc, char* args[] )
 {
   // create framework
   Framework * co2dz = new Framework();
-
-  // TODO: use seperate threads and implement co2dz->stop();
+  
 	// play the game
 	co2dz->start();
 
