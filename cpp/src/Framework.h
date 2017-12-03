@@ -90,7 +90,7 @@ private:
     Co2dz_Game_Over * game_over_;
 
     // game states
-    enum game_states_ { MAIN_MENU, PLAYING, OPTIONS, GAMEOVER };;
+    enum game_states_ { MAIN_MENU, PLAYING, OPTIONS, GAME_OVER };;
 
     // current game states
     game_states_ game_state_;

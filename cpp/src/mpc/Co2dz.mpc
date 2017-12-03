@@ -2,19 +2,31 @@ project (Co2dz) {
     exename = Co2dz
 
     specific (make) {
-        compile_flags += -std=c++11
-        libs = SDL2
-        libs += SDL2_image
-        libs += SDL2_ttf
+      compile_flags += -std=c++11
+      libs = SDL2
+      libs += SDL2_image
+      libs += SDL2_ttf
     }
 
     Source_Files {
-        main.cpp
-        LTexture.cpp
+      ../main.cpp
+      ../Framework.cpp
+      ../game/Co2dz_Game_Menu.cpp
+      ../game/Co2dz_Game_World.cpp
+      ../game/Co2dz_Game_Over.cpp
+      ../game_objects/LTexture.cpp
     }
 
     Header_Files {
-        LTexture.h
+      ../Framework.h
+      ../game/Game.h
+      ../game/Game_Menu.h
+      ../game/Game_World.h
+      ../game/Game_Over.h
+      ../game/Co2dz_Game_Menu.h
+      ../game/Co2dz_Game_World.h
+      ../game/Co2dz_Game_Over.h
+      ../game_objects/LTexture.h
     }
 
     Template_Files {

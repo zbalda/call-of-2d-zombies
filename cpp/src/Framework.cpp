@@ -26,9 +26,6 @@ Framework::Framework (void)
   this->game_world_ = new Co2dz_Game_World ();
   this->game_over_ = new Co2dz_Game_Over ();
 
-  // set game states
-  //this->game_states_ = { MAIN_MENU, PLAYING, OPTIONS, GAMEOVER };
-
   // initialize SDL and load media
   this->initialize();
   this->load();
@@ -108,15 +105,15 @@ void Framework::initialize (void)
 }
 
 // TODO: create and use exception class
-// TODO: possibly remove load class. Should Game's just load media?
+// TODO: possibly remove load method. Should only Game load media?
 //
 // load
 //
 void Framework::load (void)
 {
   // open the font
-	this->font_ = TTF_OpenFont("open-sans/OpenSans-Regular.ttf", 28);
-	if(this->font_ == NULL) {
+	this->font_ = TTF_OpenFont("../resources/open-sans/OpenSans-Regular.ttf", 28);
+  if(this->font_ == NULL) {
     std::cout << "Failed to load font! SDL_ttf Error: " << TTF_GetError() << std::endl;
     throw std::exception();
 	}
@@ -155,7 +152,7 @@ void Framework::game_loop (void)
 	SDL_Event e;
 
 	// set text color as black
-	SDL_Color textColor = { 0, 0, 0, 255 };
+	SDL_Color text_color = { 0, 0, 0, 255 };
 
 	// current time start time
 	Uint32 start_time = 0;
@@ -167,6 +164,7 @@ void Framework::game_loop (void)
   while(!quit) {
     // TODO: implement timer for game loop
 
+    // TODO: pass mouse and keyboard state to games
     // handle events on queue
 		while(SDL_PollEvent( &e ) != 0) {
   		// quit on user request
@@ -184,6 +182,9 @@ void Framework::game_loop (void)
     time_text.str("");
     time_text << "Milliseconds since start time " << SDL_GetTicks() - start_time;
 
+    //time_text.str().c_str()
+    //text_color
+
     // clear screen
     SDL_SetRenderDrawColor(this->renderer_, 0xFF, 0xFF, 0xFF, 0xFF);
     SDL_RenderClear(this->renderer_);
@@ -193,21 +194,22 @@ void Framework::game_loop (void)
     switch(this->game_state_) {
       case MAIN_MENU :
         this->game_menu_->update();
-        this->game_menu_->draw(this->renderer_);
+        this->game_menu_->draw(*this->renderer_);
         break;
       case PLAYING :
         this->game_world_->update();
-        this->game_world_->draw(this->renderer_);
+        this->game_world_->draw(*this->renderer_);
         break;
       case OPTIONS :
-        this->game_world_->draw(this->renderer_);
-        this->game_options_->update();
-        this->game_options_->draw(this->renderer_);
+        //TODO: add game options renderer
+        //this->game_world_->draw(*this->renderer_);
+        //this->game_options_->update();
+        //this->game_options_->draw(*this->renderer_);
         break;
       case GAME_OVER :
-        this->game_world->draw(this->renderer_);
+        this->game_world_->draw(*this->renderer_);
         this->game_over_->update();
-        this->game_over_->draw(this->renderer_);
+        this->game_over_->draw(*this->renderer_);
         break;
       default:
         std::cout << "Invalid game state case." << std::endl;
