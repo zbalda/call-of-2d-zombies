@@ -20,11 +20,13 @@
 #include "game/Game.h"
 #include "game/Game_Menu.h"
 #include "game/Game_World.h"
+#include "game/Game_Options.h"
 #include "game/Game_Over.h"
 
 // using Co2dz Game_Menu, Game_World, and Game_Over
 #include "game/Co2dz_Game_Menu.h"
 #include "game/Co2dz_Game_World.h"
+#include "game/Co2dz_Game_Options.h"
 #include "game/Co2dz_Game_Over.h"
 
 class Framework
@@ -75,9 +77,10 @@ private:
     SDL_Renderer * renderer_;
 
     // game state objects
-    Co2dz_Game_Menu * game_menu_;
-    Co2dz_Game_World * game_world_;
-    Co2dz_Game_Over * game_over_;
+    Game_Menu * game_menu_;
+    Game_World * game_world_;
+    Game_Options * game_options_;
+    Game_Over * game_over_;
 
     // game states
     enum game_states_ { MAIN_MENU, PLAYING, OPTIONS, GAME_OVER };;

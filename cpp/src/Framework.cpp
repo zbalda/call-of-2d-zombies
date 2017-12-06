@@ -9,7 +9,7 @@
 
 #define DEFAULT_SCREEN_WIDTH 640
 #define DEFAULT_SCREEN_HEIGHT 480
-#define MS_PER_UPDATE 1000
+#define MS_PER_UPDATE 16
 
 //
 // Framework
@@ -19,17 +19,20 @@ Framework::Framework (void)
   , renderer_ (NULL)
   , game_menu_ (0)
   , game_world_ (0)
+  , game_options_ (0)
   , game_over_ (0)
 {
   // TODO: initialize game objects with screen size
   // create game state objects
   this->game_menu_ = new Co2dz_Game_Menu ();
   this->game_world_ = new Co2dz_Game_World ();
+  this->game_options_ = new Co2dz_Game_Options ();
   this->game_over_ = new Co2dz_Game_Over ();
 
   // initialize SDL and load media
   this->initialize();
 
+  // set game state to main menu
   this->game_state_ = MAIN_MENU;
 }
 
@@ -41,6 +44,7 @@ Framework::~Framework (void)
   // delete game state objects
   delete this->game_menu_;
   delete this->game_world_;
+  delete this->game_options_;
   delete this->game_over_;
 
   // destroy media and close SDL
@@ -111,25 +115,23 @@ void Framework::close (void)
 //
 void Framework::game_loop (void)
 {
-  // main loop flag
-	bool quit = false;
-
 	// event handler
 	SDL_Event e;
 
-	// current time start time
+	// timer
 	Uint32 previous = SDL_GetTicks();
   Uint32 current = SDL_GetTicks();
   Uint32 elapsed = current - previous;
   Uint32 lag = 0;
 
+  // main loop flag
+	bool quit = false;
+
   // game loop
   while(!quit) {
 
-
-
     // TODO: pass mouse and keyboard state to games
-    // TODO: pass event queue go games
+    // TODO: pass event queue to games
 
     // handle events on queue
 		while(SDL_PollEvent( &e ) != 0) {
@@ -164,8 +166,7 @@ void Framework::game_loop (void)
           this->game_world_->update();
           break;
         case OPTIONS :
-          // TODO: add game options renderer
-          //this->game_options_->update();
+          this->game_options_->update();
           break;
         case GAME_OVER :
           this->game_over_->update();
@@ -186,9 +187,8 @@ void Framework::game_loop (void)
         this->game_world_->draw(*this->renderer_, lag);
         break;
       case OPTIONS :
-        // TODO: add game options
-        //this->game_world_->draw(*this->renderer_, 0);
-        //this->game_options_->draw(*this->renderer_, lag);
+        this->game_world_->draw(*this->renderer_, 0);
+        this->game_options_->draw(*this->renderer_, lag);
         break;
       case GAME_OVER :
         this->game_world_->draw(*this->renderer_, 0);
