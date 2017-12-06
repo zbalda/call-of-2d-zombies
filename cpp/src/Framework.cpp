@@ -9,6 +9,7 @@
 
 #define DEFAULT_SCREEN_WIDTH 640
 #define DEFAULT_SCREEN_HEIGHT 480
+#define MS_PER_UPDATE 1000
 
 //
 // Framework
@@ -117,13 +118,19 @@ void Framework::game_loop (void)
 	SDL_Event e;
 
 	// current time start time
-	Uint32 start_time = 0;
+	Uint32 previous = SDL_GetTicks();
+  Uint32 current = SDL_GetTicks();
+  Uint32 elapsed = current - previous;
+  Uint32 lag = 0;
 
   // game loop
   while(!quit) {
-    // TODO: implement timer for game loop
+
+
 
     // TODO: pass mouse and keyboard state to games
+    // TODO: pass event queue go games
+
     // handle events on queue
 		while(SDL_PollEvent( &e ) != 0) {
   		// quit on user request
@@ -132,42 +139,66 @@ void Framework::game_loop (void)
 			}
 			// reset start time on return keypress
 			else if(e.type == SDL_KEYDOWN && e.key.keysym.sym == SDLK_RETURN) {
-				start_time = SDL_GetTicks();
+				//start_time = SDL_GetTicks();
 			}
 		}
 
-    float lag = SDL_GetTicks() - start_time;
+    // update timer
+    current = SDL_GetTicks();
+    elapsed = current - previous;
+    previous = current;
+    lag += elapsed;
 
     // clear screen
     SDL_SetRenderDrawColor(this->renderer_, 0xFF, 0xFF, 0xFF, 0xFF);
     SDL_RenderClear(this->renderer_);
 
-    // update and draw appropriate game state objects
+    // while not updated to current time
+    while(lag >= MS_PER_UPDATE) {
+      // update
+      switch(this->game_state_) {
+        case MAIN_MENU :
+          this->game_menu_->update();
+          break;
+        case PLAYING :
+          this->game_world_->update();
+          break;
+        case OPTIONS :
+          // TODO: add game options renderer
+          //this->game_options_->update();
+          break;
+        case GAME_OVER :
+          this->game_over_->update();
+          break;
+        default:
+          std::cout << "Error: Invalid game state." << std::endl;
+      }
+      // track update
+      lag -= MS_PER_UPDATE;
+    }
+
+    // render
     switch(this->game_state_) {
       case MAIN_MENU :
-        this->game_menu_->update();
         this->game_menu_->draw(*this->renderer_, lag);
         break;
       case PLAYING :
-        this->game_world_->update();
         this->game_world_->draw(*this->renderer_, lag);
         break;
       case OPTIONS :
-        //TODO: add game options renderer
-        //this->game_world_->draw(*this->renderer_);
-        //this->game_options_->update();
-        //this->game_options_->draw(*this->renderer_);
+        // TODO: add game options
+        //this->game_world_->draw(*this->renderer_, 0);
+        //this->game_options_->draw(*this->renderer_, lag);
         break;
       case GAME_OVER :
-        this->game_world_->draw(*this->renderer_, lag);
-        this->game_over_->update();
+        this->game_world_->draw(*this->renderer_, 0);
         this->game_over_->draw(*this->renderer_, lag);
         break;
       default:
-        std::cout << "Invalid game state case." << std::endl;
+        std::cout << "Error: Invalid game state." << std::endl;
     }
 
-    // update screen
+    // draw to screen
     SDL_RenderPresent(this->renderer_);
   }
 }

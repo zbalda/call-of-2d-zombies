@@ -28,11 +28,12 @@ public:
 
     // update and draw
     virtual void update (void);
-    virtual void draw (SDL_Renderer & renderer, float lag);
+    virtual void draw (SDL_Renderer & renderer, Uint32 lag);
 
 private:
     // globally used font
     TTF_Font * font_;
+    int timer; // REMOVE
 };
 
 #endif  //  !defined _CO2DZ_GAME_MENU_H_

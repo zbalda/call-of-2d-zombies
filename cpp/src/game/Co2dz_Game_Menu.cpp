@@ -11,6 +11,7 @@
 // Co2dz_Game_Menu
 //
 Co2dz_Game_Menu::Co2dz_Game_Menu (void)
+		: timer(0)
 {
 	this->initialize();
 	this->load();
@@ -77,12 +78,13 @@ void Co2dz_Game_Menu::restart (void)
 //
 void Co2dz_Game_Menu::update (void)
 {
+	this->timer++;
 }
 
 //
 // draw
 //
-void Co2dz_Game_Menu::draw (SDL_Renderer & renderer, float lag)
+void Co2dz_Game_Menu::draw (SDL_Renderer & renderer, Uint32 lag)
 {
 	// set text color to black
 	SDL_Color text_color = { 0, 0, 0, 255 };
@@ -90,7 +92,7 @@ void Co2dz_Game_Menu::draw (SDL_Renderer & renderer, float lag)
 	// set time string
 	std::stringstream time_text;
 	time_text.str("");
-	time_text << "Milliseconds since start time " << lag;
+	time_text << "Timer: " << this->timer << "     Lag: " << lag;
 
 	int w = 0;
 	int h = 0;

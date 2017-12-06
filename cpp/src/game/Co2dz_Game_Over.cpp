@@ -52,6 +52,6 @@ void Co2dz_Game_Over::update (void)
 //
 // draw
 //
-void Co2dz_Game_Over::draw (SDL_Renderer & renderer, float lag)
+void Co2dz_Game_Over::draw (SDL_Renderer & renderer, Uint32 lag)
 {
 }

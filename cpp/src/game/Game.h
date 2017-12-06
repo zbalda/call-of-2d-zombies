@@ -34,7 +34,7 @@ public:
     // update and draw
     virtual void update (void) = 0;
 
-    virtual void draw (SDL_Renderer & renderer, float lag) = 0;
+    virtual void draw (SDL_Renderer & renderer, Uint32 lag) = 0;
 };
 
 #endif  //  !defined _GAME_H_
