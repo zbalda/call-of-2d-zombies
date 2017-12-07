@@ -43,6 +43,13 @@ void Co2dz_Game_Options::restart (void)
 }
 
 //
+// handle event
+//
+void Co2dz_Game_Options::handle_event (SDL_Event e)
+{
+}
+
+//
 // update
 //
 void Co2dz_Game_Options::update (void)

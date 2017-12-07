@@ -43,6 +43,13 @@ void Co2dz_Game_World::restart (void)
 }
 
 //
+// handle event
+//
+void Co2dz_Game_World::handle_event (SDL_Event e)
+{
+}
+
+//
 // update
 //
 void Co2dz_Game_World::update (void)

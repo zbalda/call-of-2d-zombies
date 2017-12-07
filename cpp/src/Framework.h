@@ -60,6 +60,13 @@ protected:
     void game_loop (void);
 
     /**
+     * Process input.
+     *
+     * @return   true if user quits
+     */
+    bool process_input (void);
+
+    /**
      * Update the game.
      *
      * @return   lag

@@ -9,6 +9,7 @@
 #define _CO2DZ_GAME_MENU_H_
 
 #include "Game_Menu.h"
+#include <queue>
 
 class Co2dz_Game_Menu : public Game_Menu
 {
@@ -26,6 +27,9 @@ public:
     // restart the game
     virtual void restart (void);
 
+    // handle event
+    virtual void handle_event (SDL_Event e);
+
     // update and draw
     virtual void update (void);
     virtual void draw (SDL_Renderer & renderer, Uint32 lag);
@@ -34,6 +38,7 @@ private:
     // globally used font
     TTF_Font * font_;
     int timer; // REMOVE
+    std::queue<SDL_Event> events_; // TODO: REFACTOR (var and include)
 };
 
 #endif  //  !defined _CO2DZ_GAME_MENU_H_

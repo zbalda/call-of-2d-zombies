@@ -43,6 +43,13 @@ void Co2dz_Game_Over::restart (void)
 }
 
 //
+// handle event
+//
+void Co2dz_Game_Over::handle_event (SDL_Event e)
+{
+}
+
+//
 // update
 //
 void Co2dz_Game_Over::update (void)

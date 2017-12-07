@@ -132,11 +132,8 @@ void Framework::game_loop (void)
     previous = current;
     lag += elapsed;
 
-    // TODO: pass mouse and keyboard state to games
-    // TODO: pass event queue to games
-
-    // process input
-		//quit = this->process_input();
+    // handle input
+    quit = this->process_input();
 
     // update
     lag = this->update(lag);
@@ -144,6 +141,43 @@ void Framework::game_loop (void)
     // render
     this->render(lag);
   }
+}
+
+//
+// process_input
+//
+bool Framework::process_input (void)
+{
+  // event handler
+	SDL_Event e;
+
+  // process input
+	while(SDL_PollEvent(&e) != 0) {
+		// quit on user request
+		if(e.type == SDL_QUIT) {
+			return true;
+		}
+    // handle event
+    switch(this->game_state_) {
+      case MAIN_MENU :
+        this->game_menu_->handle_event(e);
+        break;
+      case PLAYING :
+        this->game_world_->handle_event(e);
+        break;
+      case OPTIONS :
+        this->game_options_->handle_event(e);
+        break;
+      case GAME_OVER :
+        this->game_over_->handle_event(e);
+        break;
+      default:
+        std::cout << "Error: Invalid game state." << std::endl;
+    }
+  }
+
+  // user did not quit
+  return false;
 }
 
 //

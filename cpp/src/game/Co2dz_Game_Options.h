@@ -26,6 +26,9 @@ public:
     // restart the game
     virtual void restart (void);
 
+    // handle event
+    virtual void handle_event (SDL_Event e);
+
     // update and draw
     virtual void update (void);
     virtual void draw (SDL_Renderer & renderer, Uint32 lag);
