@@ -115,9 +115,6 @@ void Framework::close (void)
 //
 void Framework::game_loop (void)
 {
-	// event handler
-	SDL_Event e;
-
 	// timer
 	Uint32 previous = SDL_GetTicks();
   Uint32 current = SDL_GetTicks();
@@ -139,12 +136,7 @@ void Framework::game_loop (void)
     // TODO: pass event queue to games
 
     // process input
-		while(SDL_PollEvent( &e ) != 0) {
-  		// quit on user request
-			if(e.type == SDL_QUIT) {
-        quit = true;
-			}
-		}
+		quit = this->process_input();
 
     // update
     lag = this->update(lag);
@@ -152,6 +144,29 @@ void Framework::game_loop (void)
     // render
     this->render(lag);
   }
+}
+
+//
+// process_input
+//
+bool Framework::process_input (void)
+{
+  // keyboard state
+  const Uint8* key_states = SDL_GetKeyboardState(NULL);
+
+  // event handler
+  SDL_Event e;
+
+  // process input
+  while(SDL_PollEvent(&e) != 0) {
+    // quit on user request
+    if(e.type == SDL_QUIT) {
+      return true;
+    }
+  }
+
+  // user did not quit
+  return false;
 }
 
 //
