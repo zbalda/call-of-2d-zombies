@@ -32,6 +32,10 @@ public:
     // update and draw
     virtual void update (void);
     virtual void draw (SDL_Renderer & renderer, Uint32 lag);
+
+private:
+    // event queue
+    std::queue<SDL_Event> events_;
 };
 
 #endif  //  !defined _CO2DZ_GAME_OVER_H_

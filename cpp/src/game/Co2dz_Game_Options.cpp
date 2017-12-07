@@ -47,6 +47,7 @@ void Co2dz_Game_Options::restart (void)
 //
 void Co2dz_Game_Options::handle_event (SDL_Event e)
 {
+  this->events_.push(e);
 }
 
 //
@@ -54,6 +55,20 @@ void Co2dz_Game_Options::handle_event (SDL_Event e)
 //
 void Co2dz_Game_Options::update (void)
 {
+  // event handler
+	SDL_Event e;
+
+	// process input
+	while(!this->events_.empty()) {
+		e = this->events_.front();
+		this->events_.pop();
+	}
+
+	// get key states
+	const Uint8* key_states = SDL_GetKeyboardState(NULL);
+	if(key_states[SDL_SCANCODE_UP]) {
+		std::cout << "up button" << std::endl;
+	}
 }
 
 //

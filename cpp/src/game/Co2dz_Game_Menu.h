@@ -9,7 +9,6 @@
 #define _CO2DZ_GAME_MENU_H_
 
 #include "Game_Menu.h"
-#include <queue>
 
 class Co2dz_Game_Menu : public Game_Menu
 {
@@ -37,8 +36,11 @@ public:
 private:
     // globally used font
     TTF_Font * font_;
+
+    // event queue
+    std::queue<SDL_Event> events_;
+
     int timer; // REMOVE
-    std::queue<SDL_Event> events_; // TODO: REFACTOR (var and include)
 };
 
 #endif  //  !defined _CO2DZ_GAME_MENU_H_

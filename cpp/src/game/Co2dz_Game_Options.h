@@ -34,8 +34,8 @@ public:
     virtual void draw (SDL_Renderer & renderer, Uint32 lag);
 
 private:
-    // globally used font
-    TTF_Font * font_;
+  // event queue
+  std::queue<SDL_Event> events_;
 };
 
 #endif  //  !defined _CO2DZ_GAME_OPTIONS_H_

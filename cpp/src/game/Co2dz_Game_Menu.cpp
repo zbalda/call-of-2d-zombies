@@ -11,7 +11,7 @@
 // Co2dz_Game_Menu
 //
 Co2dz_Game_Menu::Co2dz_Game_Menu (void)
-		: timer(0)
+	: timer (0)
 {
 	this->initialize();
 	this->load();
@@ -79,7 +79,6 @@ void Co2dz_Game_Menu::restart (void)
 void Co2dz_Game_Menu::handle_event (SDL_Event e)
 {
 	this->events_.push(e);
-	std::cout << "handle_event: " << e.type << std::endl;
 }
 
 //
@@ -96,13 +95,12 @@ void Co2dz_Game_Menu::update (void)
 	while(!this->events_.empty()) {
 		e = this->events_.front();
 		this->events_.pop();
-		std::cout << "update: " << e.type << std::endl;
 	}
 
+	// get key states
 	const Uint8* key_states = SDL_GetKeyboardState(NULL);
-	if( key_states[ SDL_SCANCODE_UP ] )
-	{
-		std::cout << "key states can be checked from game object" << std::endl;
+	if(key_states[SDL_SCANCODE_UP]) {
+		std::cout << "up button" << std::endl;
 	}
 }
 
