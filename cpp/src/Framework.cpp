@@ -136,7 +136,7 @@ void Framework::game_loop (void)
     // TODO: pass event queue to games
 
     // process input
-		quit = this->process_input();
+		//quit = this->process_input();
 
     // update
     lag = this->update(lag);
@@ -144,29 +144,6 @@ void Framework::game_loop (void)
     // render
     this->render(lag);
   }
-}
-
-//
-// process_input
-//
-bool Framework::process_input (void)
-{
-  // keyboard state
-  const Uint8* key_states = SDL_GetKeyboardState(NULL);
-
-  // event handler
-  SDL_Event e;
-
-  // process input
-  while(SDL_PollEvent(&e) != 0) {
-    // quit on user request
-    if(e.type == SDL_QUIT) {
-      return true;
-    }
-  }
-
-  // user did not quit
-  return false;
 }
 
 //
