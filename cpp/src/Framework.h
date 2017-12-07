@@ -39,7 +39,7 @@ public:
     ~Framework (void);
 
     /**
-     * Start the game.
+     * Start the game loop.
      */
     void start (void);
 
@@ -55,9 +55,19 @@ protected:
     void close (void);
 
     /**
-     * Start the game loop.
+     * The main game loop.
      */
     void game_loop (void);
+
+    /**
+     * Update the game.
+     */
+    Uint32 update (Uint32 lag);
+
+    /**
+     * Redner the game.
+     */
+    void render (Uint32 lag);
 
     /**
      * Start a new game.

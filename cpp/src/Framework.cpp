@@ -129,78 +129,92 @@ void Framework::game_loop (void)
 
   // game loop
   while(!quit) {
-
-    // TODO: pass mouse and keyboard state to games
-    // TODO: pass event queue to games
-
-    // handle events on queue
-		while(SDL_PollEvent( &e ) != 0) {
-  		// quit on user request
-			if(e.type == SDL_QUIT) {
-        quit = true;
-			}
-			// reset start time on return keypress
-			else if(e.type == SDL_KEYDOWN && e.key.keysym.sym == SDLK_RETURN) {
-				//start_time = SDL_GetTicks();
-			}
-		}
-
     // update timer
     current = SDL_GetTicks();
     elapsed = current - previous;
     previous = current;
     lag += elapsed;
 
-    // clear screen
-    SDL_SetRenderDrawColor(this->renderer_, 0xFF, 0xFF, 0xFF, 0xFF);
-    SDL_RenderClear(this->renderer_);
+    // TODO: pass mouse and keyboard state to games
+    // TODO: pass event queue to games
 
-    // while not updated to current time
-    while(lag >= MS_PER_UPDATE) {
-      // update
-      switch(this->game_state_) {
-        case MAIN_MENU :
-          this->game_menu_->update();
-          break;
-        case PLAYING :
-          this->game_world_->update();
-          break;
-        case OPTIONS :
-          this->game_options_->update();
-          break;
-        case GAME_OVER :
-          this->game_over_->update();
-          break;
-        default:
-          std::cout << "Error: Invalid game state." << std::endl;
-      }
-      // track update
-      lag -= MS_PER_UPDATE;
-    }
+    // process input
+		while(SDL_PollEvent( &e ) != 0) {
+  		// quit on user request
+			if(e.type == SDL_QUIT) {
+        quit = true;
+			}
+		}
+
+    // update
+    lag = this->update(lag);
 
     // render
+    this->render(lag);
+  }
+}
+
+//
+// update
+//
+Uint32 Framework::update (Uint32 lag)
+{
+  // while not updated to current time
+  while(lag >= MS_PER_UPDATE) {
+    // update
     switch(this->game_state_) {
       case MAIN_MENU :
-        this->game_menu_->draw(*this->renderer_, lag);
+        this->game_menu_->update();
         break;
       case PLAYING :
-        this->game_world_->draw(*this->renderer_, lag);
+        this->game_world_->update();
         break;
       case OPTIONS :
-        this->game_world_->draw(*this->renderer_, 0);
-        this->game_options_->draw(*this->renderer_, lag);
+        this->game_options_->update();
         break;
       case GAME_OVER :
-        this->game_world_->draw(*this->renderer_, 0);
-        this->game_over_->draw(*this->renderer_, lag);
+        this->game_over_->update();
         break;
       default:
         std::cout << "Error: Invalid game state." << std::endl;
     }
-
-    // draw to screen
-    SDL_RenderPresent(this->renderer_);
+    // track update
+    lag -= MS_PER_UPDATE;
   }
+  return lag;
+}
+
+//
+// render
+//
+void Framework::render (Uint32 lag)
+{
+  // clear screen
+  SDL_SetRenderDrawColor(this->renderer_, 0xFF, 0xFF, 0xFF, 0xFF);
+  SDL_RenderClear(this->renderer_);
+
+  // render
+  switch(this->game_state_) {
+    case MAIN_MENU :
+      this->game_menu_->draw(*this->renderer_, lag);
+      break;
+    case PLAYING :
+      this->game_world_->draw(*this->renderer_, lag);
+      break;
+    case OPTIONS :
+      this->game_world_->draw(*this->renderer_, 0);
+      this->game_options_->draw(*this->renderer_, lag);
+      break;
+    case GAME_OVER :
+      this->game_world_->draw(*this->renderer_, 0);
+      this->game_over_->draw(*this->renderer_, lag);
+      break;
+    default:
+      std::cout << "Error: Invalid game state." << std::endl;
+  }
+
+  // draw to screen
+  SDL_RenderPresent(this->renderer_);
 }
 
 //
