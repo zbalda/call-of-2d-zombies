@@ -40,6 +40,7 @@ void Game_Object::send (int message)
 //
 bool Game_Object::is_alive (void)
 {
+  return this->alive_;
 }
 
 //
@@ -47,6 +48,7 @@ bool Game_Object::is_alive (void)
 //
 void Game_Object::kill (void)
 {
+  this->alive_ = false;
 }
 
 //
@@ -68,6 +70,7 @@ void Game_Object::remove_component (size_t index)
 //
 int Game_Object::get_x (void)
 {
+  return this->x_;
 }
 
 //
@@ -75,6 +78,7 @@ int Game_Object::get_x (void)
 //
 int Game_Object::get_y (void)
 {
+  return this->y_;
 }
 
 //
@@ -82,6 +86,7 @@ int Game_Object::get_y (void)
 //
 int Game_Object::get_vel_x (void)
 {
+  return this->vel_x_;
 }
 
 //
@@ -89,4 +94,5 @@ int Game_Object::get_vel_x (void)
 //
 int Game_Object::get_vel_y (void)
 {
+  return this->vel_y_;
 }

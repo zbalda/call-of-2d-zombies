@@ -101,10 +101,10 @@ private:
   std::vector <Component*> * components_;
 
   // object position
-  int x, y;
+  int x_, y_;
 
   // object velocity
-  int vel_x, vel_y;
+  int vel_x_, vel_y_;
 
   // for tracking if object is alive
   bool alive_;
