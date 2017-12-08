@@ -59,28 +59,28 @@ public:
    *
    * param[in]    component   Component to add
    */
-   void add_component (Component & component);
+  void add_component (Component & component);
 
-   /*
-    * Removes component at given index.
-    *
-    * param[in]    index   Component to remove
-    */
-    void remove_component (size_t index);
+  /*
+   * Removes component at given index.
+   *
+   * param[in]    index   Component to remove
+   */
+  void remove_component (size_t index);
 
-    /*
-     * Get x position of object.
-     *
-     * @return    x    Objects x position
-     */
-     int get_x (void);
+  /*
+   * Get x position of object.
+   *
+   * @return    x    Objects x position
+   */
+  int get_x (void);
 
-     /*
-      * Get y position of object.
-      *
-      * @return    y   Objects y position
-      */
-      int get_y (void);
+  /*
+   * Get y position of object.
+   *
+   * @return    y   Objects y position
+   */
+  int get_y (void);
 
 protected:
   // object components
