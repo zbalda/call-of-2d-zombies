@@ -82,12 +82,29 @@ public:
    */
   int get_y (void);
 
-protected:
+  /*
+   * Get x velocity of object.
+   *
+   * @return    vel_x    Objects x velocity
+   */
+  int get_vel_x (void);
+
+  /*
+   * Get y velocity of object.
+   *
+   * @return    vel_y   Objects y velocity
+   */
+  int get_vel_y (void);
+
+private:
   // object components
   std::vector <Component*> * components_;
 
   // object position
   int x, y;
+
+  // object velocity
+  int vel_x, vel_y;
 
   // for tracking if object is alive
   bool alive_;
