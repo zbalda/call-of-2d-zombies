@@ -82,10 +82,10 @@ public:
       */
       int get_y (void);
 
-private:
+protected:
   // object components
   std::vector <Component*> * components_;
-  
+
   // object position
   int x, y;
 
