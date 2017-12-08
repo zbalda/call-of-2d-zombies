@@ -22,7 +22,7 @@ class Game_Object
 {
 public:
   /// default constructor
-  Game_Object (std::vector<Component> components);
+  Game_Object (std::vector<Component> & components);
 
   /// destructor
   ~Game_Object (void);
