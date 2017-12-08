@@ -110,4 +110,6 @@ private:
   bool alive_;
 }
 
+#include "Game_Object.inl"
+
 #endif  //  !defined _GAME_OBJECT_H_
