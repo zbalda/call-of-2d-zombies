@@ -39,7 +39,7 @@ Game_Object::~Game_Object (void)
 void Game_Object::update (Game_World & world, Game_Object & camera)
 {
   for(size_t i = 0; i < this->components_->size(); i++) {
-    this->components_[i].update(world, camera);
+    this->components_[i].update(*this, world, camera);
   }
 }
 
@@ -49,7 +49,7 @@ void Game_Object::update (Game_World & world, Game_Object & camera)
 void Game_Object::send (int message)
 {
   for(size_t i = 0; i < this->components_->size(); i++) {
-    this->components_[i].recieve(world, camera);
+    this->components_[i].recieve(*this, world, camera);
   }
 }
 
