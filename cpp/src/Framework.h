@@ -18,16 +18,16 @@
 
 // using Game, Game_Menu, Game_World, and Game_Over
 #include "game/Game.h"
-#include "game/Game_Menu.h"
-#include "game/Game_World.h"
-#include "game/Game_Options.h"
-#include "game/Game_Over.h"
+#include "game/game_menu/Game_Menu.h"
+#include "game/game_world/Game_World.h"
+#include "game/game_options/Game_Options.h"
+#include "game/game_over/Game_Over.h"
 
 // using Co2dz Game_Menu, Game_World, and Game_Over
-#include "game/Co2dz_Game_Menu.h"
-#include "game/Co2dz_Game_World.h"
-#include "game/Co2dz_Game_Options.h"
-#include "game/Co2dz_Game_Over.h"
+#include "game/game_menu/Co2dz_Game_Menu.h"
+#include "game/game_world/Co2dz_Game_World.h"
+#include "game/game_options/Co2dz_Game_Options.h"
+#include "game/game_over/Co2dz_Game_Over.h"
 
 class Framework
 {

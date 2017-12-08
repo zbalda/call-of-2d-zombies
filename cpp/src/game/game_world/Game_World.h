@@ -5,16 +5,16 @@
 //
 // zbalda
 
-#ifndef _GAME_MENU_H_
-#define _GAME_MENU_H_
+#ifndef _GAME_WORLD_H_
+#define _GAME_WORLD_H_
 
-#include "Game.h"
+#include "../Game.h"
 
-class Game_Menu : public Game
+class Game_World : public Game
 {
 public:
     /// virtual destructor
-    virtual ~Game_Menu (void) { }
+    virtual ~Game_World (void) { }
 
     // initialize and load media
     virtual void initialize (void) = 0;
@@ -31,4 +31,4 @@ public:
     virtual void draw (SDL_Renderer & renderer, Uint32 lag) = 0;
 };
 
-#endif  //  !defined _GAME_MENU_H_
+#endif  //  !defined _GAME_WORLD_H_

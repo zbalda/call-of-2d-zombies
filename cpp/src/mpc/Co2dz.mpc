@@ -11,24 +11,24 @@ project (Co2dz) {
     Source_Files {
       ../main.cpp
       ../Framework.cpp
-      ../game/Co2dz_Game_Menu.cpp
-      ../game/Co2dz_Game_World.cpp
-      ../game/Co2dz_Game_Options.cpp
-      ../game/Co2dz_Game_Over.cpp
+      ../game/game_menu/Co2dz_Game_Menu.cpp
+      ../game/game_world/Co2dz_Game_World.cpp
+      ../game/game_options/Co2dz_Game_Options.cpp
+      ../game/game_over/Co2dz_Game_Over.cpp
       ../game_objects/LTexture.cpp
     }
 
     Header_Files {
       ../Framework.h
       ../game/Game.h
-      ../game/Game_Menu.h
-      ../game/Game_World.h
-      ../game/Game_Options.h
-      ../game/Game_Over.h
-      ../game/Co2dz_Game_Menu.h
-      ../game/Co2dz_Game_World.h
-      ../game/Co2dz_Game_Options.h
-      ../game/Co2dz_Game_Over.h
+      ../game/game_menu/Game_Menu.h
+      ../game/game_world/Game_World.h
+      ../game/game_options/Game_Options.h
+      ../game/game_over/Game_Over.h
+      ../game/game_menu/Co2dz_Game_Menu.h
+      ../game/game_world/Co2dz_Game_World.h
+      ../game/game_options/Co2dz_Game_Options.h
+      ../game/game_over/Co2dz_Game_Over.h
       ../game_objects/LTexture.h
     }
 

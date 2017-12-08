@@ -5,16 +5,16 @@
 //
 // zbalda
 
-#ifndef _GAME_OVER_H_
-#define _GAME_OVER_H_
+#ifndef _GAME_MENU_H_
+#define _GAME_MENU_H_
 
-#include "Game.h"
+#include "../Game.h"
 
-class Game_Over : public Game
+class Game_Menu : public Game
 {
 public:
     /// virtual destructor
-    virtual ~Game_Over (void) { }
+    virtual ~Game_Menu (void) { }
 
     // initialize and load media
     virtual void initialize (void) = 0;
@@ -31,4 +31,4 @@ public:
     virtual void draw (SDL_Renderer & renderer, Uint32 lag) = 0;
 };
 
-#endif  //  !defined _GAME_OVER_H_
+#endif  //  !defined _GAME_MENU_H_

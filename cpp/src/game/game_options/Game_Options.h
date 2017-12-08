@@ -8,7 +8,7 @@
 #ifndef _GAME_OPTIONS_H_
 #define _GAME_OPTIONS_H_
 
-#include "Game.h"
+#include "../Game.h"
 
 class Game_Options : public Game
 {
