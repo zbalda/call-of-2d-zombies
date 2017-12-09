@@ -15,9 +15,9 @@ project (Co2dz) {
       ../game/game_world/Co2dz_Game_World.cpp
       ../game_objects/Camera.cpp
       ../game_objects/Game_Object.cpp
-      ../game_objects/components/graphics_component/Player_Graphics_Component.cpp
-      ../game_objects/components/input_component/Player_Input_Component.cpp
-      ../game_objects/components/physics_component/Player_Physics_Component.cpp
+      ../game_objects/components/graphics_components/Player_Graphics_Component.cpp
+      ../game_objects/components/input_components/Player_Input_Component.cpp
+      ../game_objects/components/physics_components/Player_Physics_Component.cpp
       ../game_objects/LTexture.cpp
     }
 
@@ -31,12 +31,12 @@ project (Co2dz) {
       ../game_objects/Camera.h
       ../game_objects/Game_Object.h
       ../game_objects/components/Component.h
-      ../game_objects/components/graphics_component/Graphics_Component.h
-      ../game_objects/components/graphics_component/Player_Graphics_Component.h
-      ../game_objects/components/input_component/Input_Component.h
-      ../game_objects/components/input_component/Player_Input_Component.h
-      ../game_objects/components/physics_component/Physics_Component.h
-      ../game_objects/components/physics_component/Player_Physics_Component.h
+      ../game_objects/components/graphics_components/Graphics_Component.h
+      ../game_objects/components/graphics_components/Player_Graphics_Component.h
+      ../game_objects/components/input_components/Input_Component.h
+      ../game_objects/components/input_components/Player_Input_Component.h
+      ../game_objects/components/physics_components/Physics_Component.h
+      ../game_objects/components/physics_components/Player_Physics_Component.h
       ../game_objects/LTexture.h
     }
 

@@ -16,13 +16,13 @@ class Player_Physics_Component : public Physics_Component
   Player_Physics_Component (void);
 
   /// destructor
-  ~Player_Physics_Component (void);
+  virtual ~Player_Physics_Component (void);
 
   // recieve message broadcasted by Game_Object
   virtual void recieve (int message);
 
   // update game object
   virtual void update (Game_Object & object, Game_World & world, Camera & camera);
-}
+};
 
 #endif  //  !defined _PLAYER_PHYSICS_COMPONENT_H_

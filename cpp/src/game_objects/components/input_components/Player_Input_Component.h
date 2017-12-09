@@ -16,13 +16,13 @@ class Player_Input_Component : public Input_Component
   Player_Input_Component (void);
 
   /// destructor
-  ~Player_Input_Component (void);
+  virtual ~Player_Input_Component (void);
 
   // recieve message broadcasted by Game_Object
   virtual void recieve (int message);
 
   // update game object
   virtual void update (Game_Object & object, Game_World & world, Camera & camera);
-}
+};
 
 #endif  //  !defined _PLAYER_INPUT_COMPONENT_H_

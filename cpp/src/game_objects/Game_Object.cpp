@@ -7,10 +7,15 @@
 
 #include "Game_Object.h"
 
+// includes for forward declarations
+#include "../game/game_world/Game_World.h"
+#include "components/Component.h"
+#include "Camera.h"
+
 //
 // Game_Object
 //
-Game_Object::Game_Object (std::vector<Component> & components, int x, int y, int vel_x, int vel_y, bool alive)
+Game_Object::Game_Object (std::vector<Component*> components, int x, int y, int vel_x, int vel_y, bool alive)
   : components_ (components)
   , x_ (x)
   , y_ (y)
@@ -25,29 +30,28 @@ Game_Object::Game_Object (std::vector<Component> & components, int x, int y, int
 //
 Game_Object::~Game_Object (void)
 {
-  for(size_t i = 0; i < this->components_->size(); i++) {
+  for(size_t i = 0; i < this->components_.size(); i++) {
     delete this->components_[i];
   }
-  delete this->components_;
 }
 
 //
 // update
 //
-void Game_Object::update (Game_World & world, Game_Object & camera)
+void Game_Object::update (Game_World & world, Camera & camera)
 {
-  for(size_t i = 0; i < this->components_->size(); i++) {
-    this->components_[i].update(*this, world, camera);
+  for(size_t i = 0; i < this->components_.size(); i++) {
+    this->components_[i]->update(*this, world, camera);
   }
 }
 
 //
 // clone
 //
-Game_Object * clone (void)
+Game_Object * Game_Object::clone (void)
 {
   // TODO: add copy constructor to components and copy
-  return new Game_Object(this->components_, this->x, this->y, this->vel_x_, this->vel_y_, this->alive_)
+  return new Game_Object(components_, this->x_, this->y_, this->vel_x_, this->vel_y_, this->alive_);
 }
 
 //
@@ -55,23 +59,7 @@ Game_Object * clone (void)
 //
 void Game_Object::send (int message)
 {
-  for(size_t i = 0; i < this->components_->size(); i++) {
-    this->components_[i].recieve(*this, world, camera);
+  for(size_t i = 0; i < this->components_.size(); i++) {
+    this->components_[i]->recieve(message);
   }
-}
-
-//
-// add_component
-//
-void Game_Object::add_component (Component & component)
-{
-  this->components_->push_back(component);
-}
-
-//
-// remove_component
-//
-void Game_Object::remove_component (size_t index)
-{
-  this->components_->erase(index);
 }

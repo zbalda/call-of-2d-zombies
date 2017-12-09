@@ -7,6 +7,8 @@
 
 #include "Co2dz_Game_World.h"
 
+#include "../../game_objects/Game_Object.h"
+
 //
 // Co2dz_Game_World
 //

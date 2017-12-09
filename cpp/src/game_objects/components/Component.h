@@ -8,9 +8,10 @@
 #ifndef _COMPONENT_H_
 #define _COMPONENT_H_
 
-#include "../Game_Object.h"
 #include "../Camera.h"
 #include "../../game/game_world/Game_World.h"
+
+class Game_Object;
 
 class Component
 {

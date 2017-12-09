@@ -11,7 +11,7 @@
 // using SDL
 #include <SDL2/SDL.h>
 
-#include "Game_Object.h"
+class Game_Object;
 
 class Camera
 {

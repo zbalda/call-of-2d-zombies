@@ -16,13 +16,13 @@ class Player_Graphics_Component : public Graphics_Component
   Player_Graphics_Component (void);
 
   /// destructor
-  ~Player_Graphics_Component (void);
+  virtual ~Player_Graphics_Component (void);
 
   // recieve message broadcasted by Game_Object
   virtual void recieve (int message);
 
   // update game object
   virtual void update (Game_Object & object, Game_World & world, Camera & camera);
-}
+};
 
 #endif  //  !defined _PLAYER_GRAPHICS_COMPONENT_H_

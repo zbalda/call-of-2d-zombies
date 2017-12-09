@@ -7,6 +7,8 @@
 
 #include "Camera.h"
 
+#include "Game_Object.h"
+
 //
 // Camera
 //

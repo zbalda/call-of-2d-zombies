@@ -10,7 +10,9 @@
 
 #include "Game_World.h"
 #include "../../game_objects/Camera.h"
-#include "../../game_objects/Game_Object.h"
+
+// forward declarations
+class Game_Object;
 
 class Co2dz_Game_World : public Game_World
 {

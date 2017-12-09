@@ -12,17 +12,16 @@
 #include <cstring>
 #include <vector>
 
-// using Game_Object and Game_World
-#include "Game_Object.h"
-#include "components/Component.h"
-#include "../game/game_world/Game_World.h"
-
+// forward declarations
+class Game_World;
+class Component;
+class Camera;
 
 class Game_Object
 {
 public:
   /// default constructor
-  Game_Object (std::vector<Component> & components, int x, int y, int vel_x, int vel_y, bool alive);
+  Game_Object (std::vector<Component*> components, int x, int y, int vel_x, int vel_y, bool alive);
 
   /// destructor
   ~Game_Object (void);
@@ -50,25 +49,11 @@ public:
   void send (int message);
 
   /*
-   * Adds component to end of list.
-   *
-   * param[in]    component   Component to add
-   */
-  void add_component (Component & component);
-
-  /*
-   * Removes component at given index.
-   *
-   * param[in]    index   Component to remove
-   */
-  void remove_component (size_t index);
-
-  /*
    * Checks if object is alive.
    *
    * @return  True if object is alive
    */
-  bool is_alive (void);
+  bool is_alive (void) const;
 
   /*
    * Marks object as dead.
@@ -80,32 +65,32 @@ public:
    *
    * @return    x    Objects x position
    */
-  int get_x (void);
+  int get_x (void) const;
 
   /*
    * Get y position of object.
    *
    * @return    y   Objects y position
    */
-  int get_y (void);
+  int get_y (void) const;
 
   /*
    * Get x velocity of object.
    *
    * @return    vel_x    Objects x velocity
    */
-  int get_vel_x (void);
+  int get_vel_x (void) const;
 
   /*
    * Get y velocity of object.
    *
    * @return    vel_y   Objects y velocity
    */
-  int get_vel_y (void);
+  int get_vel_y (void) const;
 
 private:
   // object components
-  std::vector <Component*> * components_;
+  std::vector <Component*> components_;
 
   // object position
   int x_, y_;
