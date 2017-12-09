@@ -10,16 +10,14 @@
 //
 // Game_Object
 //
-Game_Object::Game_Object (std::vector<Component> & components)
-  : components_ (0)
-  , x_ (0)
-  , y_ (0)
-  , vel_x_ (0)
-  , vel_y_ (0)
-  , alive_ (0)
+Game_Object::Game_Object (std::vector<Component> & components, int x, int y, int vel_x, int vel_y, bool alive)
+  : components_ (components)
+  , x_ (x)
+  , y_ (y)
+  , vel_x_ (vel_x)
+  , vel_y_ (vel_y)
+  , alive_ (alive)
 {
-  this->components_ = components;
-  this->alive_ = true;
 }
 
 //
@@ -41,6 +39,15 @@ void Game_Object::update (Game_World & world, Game_Object & camera)
   for(size_t i = 0; i < this->components_->size(); i++) {
     this->components_[i].update(*this, world, camera);
   }
+}
+
+//
+// clone
+//
+Game_Object * clone (void)
+{
+  // TODO: add copy constructor to components and copy
+  return new Game_Object(this->components_, this->x, this->y, this->vel_x_, this->vel_y_, this->alive_)
 }
 
 //

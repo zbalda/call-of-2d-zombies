@@ -15,14 +15,14 @@
 // using Game_Object and Game_World
 #include "Game_Object.h"
 #include "Component.h"
-#include "../game/Game_World.h"
+#include "../game/game_world/Game_World.h"
 
 
 class Game_Object
 {
 public:
   /// default constructor
-  Game_Object (std::vector<Component> & components);
+  Game_Object (std::vector<Component> & components, int x, int y, int vel_x, int vel_y, bool alive);
 
   /// destructor
   ~Game_Object (void);
@@ -34,6 +34,13 @@ public:
    * param[in]    camera    Camera to render to
    */
   void update (Game_World & world, Game_Object & camera);
+
+  /*
+   * Clones self.
+   *
+   * @return    Clone of self
+   */
+  Game_Object * clone (void);
 
   /*
    * Broadcasts message to components.
