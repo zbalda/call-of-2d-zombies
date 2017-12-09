@@ -30,6 +30,7 @@ public:
    */
   void update (Game_Object & actor);
 
+  // TODO: take in renderer to render object to
   /*
    * Draws rectangle if it is visable by camera.
    *
@@ -45,6 +46,6 @@ private:
 
   // camera position
   int x_, y_;
-}
+};
 
 #endif  //  !defined _CAMERA_H_

@@ -10,7 +10,7 @@
 
 #include "Game_World.h"
 #include "../../game_objects/Camera.h"
-//#include "../../game_objects/Game_Object.h"
+#include "../../game_objects/Game_Object.h"
 
 class Co2dz_Game_World : public Game_World
 {
@@ -43,7 +43,7 @@ private:
   Camera * camera_;
 
   // game objects
-  //std::vector <Game_Object> * objects_;
+  std::vector <Game_Object> * objects_;
 };
 
 #endif  //  !defined _CO2DZ_GAME_WORLD_H_

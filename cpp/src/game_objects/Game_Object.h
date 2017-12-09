@@ -14,7 +14,7 @@
 
 // using Game_Object and Game_World
 #include "Game_Object.h"
-#include "Component.h"
+#include "components/Component.h"
 #include "../game/game_world/Game_World.h"
 
 
@@ -115,7 +115,7 @@ private:
 
   // for tracking if object is alive
   bool alive_;
-}
+};
 
 #include "Game_Object.inl"
 
