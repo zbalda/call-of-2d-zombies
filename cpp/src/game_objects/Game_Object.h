@@ -33,7 +33,7 @@ public:
    * param[in]    world     Game world
    * param[in]    camera    Camera to render to
    */
-  void update (Game_World & world, Game_Object & camera);
+  void update (Game_World & world, Camera & camera);
 
   /*
    * Clones self.
@@ -50,18 +50,6 @@ public:
   void send (int message);
 
   /*
-   * Checks if object is alive.
-   *
-   * @return  True if object is alive
-   */
-  bool is_alive (void);
-
-  /*
-   * Marks object as dead.
-   */
-  void kill (void);
-
-  /*
    * Adds component to end of list.
    *
    * param[in]    component   Component to add
@@ -74,6 +62,18 @@ public:
    * param[in]    index   Component to remove
    */
   void remove_component (size_t index);
+
+  /*
+   * Checks if object is alive.
+   *
+   * @return  True if object is alive
+   */
+  bool is_alive (void);
+
+  /*
+   * Marks object as dead.
+   */
+  void kill (void);
 
   /*
    * Get x position of object.

@@ -20,7 +20,7 @@ public:
   virtual void recieve (int message) = 0;
 
   // update game object
-  virtual void update (Game_Object & object, Game_World & world, Game_Object & camera) = 0;
+  virtual void update (Game_Object & object, Game_World & world, Camera & camera) = 0;
 }
 
 #endif  //  !defined _GRAPHICS_COMPONENT_H_

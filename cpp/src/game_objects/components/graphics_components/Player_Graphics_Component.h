@@ -22,7 +22,7 @@ class Player_Graphics_Component : public Graphics_Component
   virtual void recieve (int message);
 
   // update game object
-  virtual void update (Game_Object & object, Game_World & world, Game_Object & camera);
+  virtual void update (Game_Object & object, Game_World & world, Camera & camera);
 }
 
 #endif  //  !defined _PLAYER_GRAPHICS_COMPONENT_H_

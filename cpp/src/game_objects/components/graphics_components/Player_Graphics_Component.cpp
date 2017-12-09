@@ -31,6 +31,6 @@ void Player_Graphics_Component::recieve (int message)
 //
 // update
 //
-void Player_Graphics_Component::update (Game_Object & object, Game_World & world, Game_Object & camera)
+void Player_Graphics_Component::update (Game_Object & object, Game_World & world, Camera & camera)
 {
 }
