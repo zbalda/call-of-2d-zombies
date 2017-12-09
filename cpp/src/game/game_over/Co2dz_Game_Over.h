@@ -35,7 +35,7 @@ public:
 
 private:
     // event queue
-    std::queue<SDL_Event> events_;
+    std::vector <SDL_Event> events_;
 };
 
 #endif  //  !defined _CO2DZ_GAME_OVER_H_

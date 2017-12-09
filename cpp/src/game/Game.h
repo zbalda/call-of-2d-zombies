@@ -17,7 +17,7 @@
 #include <string>
 #include <iostream>
 #include <sstream>
-#include <queue>
+#include <vector>
 
 class Game
 {

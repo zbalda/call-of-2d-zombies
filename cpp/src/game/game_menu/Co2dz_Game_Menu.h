@@ -38,7 +38,7 @@ private:
     TTF_Font * font_;
 
     // event queue
-    std::queue<SDL_Event> events_;
+    std::vector <SDL_Event> events_;
 
     int timer; // REMOVE
 };

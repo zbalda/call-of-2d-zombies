@@ -33,7 +33,7 @@ Framework::Framework (void)
   this->initialize();
 
   // set game state to main menu
-  this->game_state_ = MAIN_MENU;
+  this->game_state_ = PLAYING;
 }
 
 //

@@ -8,11 +8,9 @@
 #ifndef _CO2DZ_GAME_WORLD_H_
 #define _CO2DZ_GAME_WORLD_H_
 
-#include <vector>
-
 #include "Game_World.h"
-#include "../../game_objects/Camera.h"
-#include "../../game_objects/Game_Object.h"
+//#include "../../game_objects/Camera.h"
+//#include "../../game_objects/Game_Object.h"
 
 class Co2dz_Game_World : public Game_World
 {
@@ -39,13 +37,13 @@ public:
 
 private:
   // event queue
-  std::vector<SDL_Event> events_;
+  std::vector <SDL_Event> events_;
 
   // camera
-  Camera * camera_;
+  //Camera * camera_;
 
   // game objects
-  std::vector <Game_Object> * objects_;
+  //std::vector <Game_Object> * objects_;
 };
 
 #endif  //  !defined _CO2DZ_GAME_WORLD_H_
