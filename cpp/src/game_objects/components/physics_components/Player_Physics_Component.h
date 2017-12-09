@@ -5,18 +5,18 @@
 //
 // zbalda
 
-#ifndef _PLAYER_GRAPHICS_COMPONENT_H_
-#define _PLAYER_GRAPHICS_COMPONENT_H_
+#ifndef _PLAYER_PHYSICS_COMPONENT_H_
+#define _PLAYER_PHYSICS_COMPONENT_H_
 
-#include "Graphics_Component.h"
+#include "Physics_Component.h"
 
-class Player_Graphics_Component : public Graphics_Component
+class Player_Physics_Component : public Physics_Component
 {
   /// default constructor
-  Player_Graphics_Component (void);
+  Player_Physics_Component (void);
 
   /// destructor
-  ~Player_Graphics_Component (void);
+  ~Player_Physics_Component (void);
 
   // recieve message broadcasted by Game_Object
   virtual void recieve (int message);
@@ -25,4 +25,4 @@ class Player_Graphics_Component : public Graphics_Component
   virtual void update (Game_Object & object, Game_World & world, Camera & camera);
 }
 
-#endif  //  !defined _PLAYER_GRAPHICS_COMPONENT_H_
+#endif  //  !defined _PLAYER_PHYSICS_COMPONENT_H_

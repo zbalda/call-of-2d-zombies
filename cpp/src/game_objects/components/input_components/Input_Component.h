@@ -5,12 +5,12 @@
 //
 // zbalda
 
-#ifndef _GRAPHICS_COMPONENT_H_
-#define _GRAPHICS_COMPONENT_H_
+#ifndef _INPUT_COMPONENT_H_
+#define _INPUT_COMPONENT_H_
 
 #include "../Component.h"
 
-class Graphics_Component : public Component
+class Input_Component : public Component
 {
 public:
   // virtual destructor
@@ -23,4 +23,4 @@ public:
   virtual void update (Game_Object & object, Game_World & world, Camera & camera) = 0;
 }
 
-#endif  //  !defined _GRAPHICS_COMPONENT_H_
+#endif  //  !defined _INPUT_COMPONENT_H_
