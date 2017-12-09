@@ -13,6 +13,7 @@ project (Co2dz) {
       ../Framework.cpp
       ../game/game_menu/Co2dz_Game_Menu.cpp
       ../game/game_world/Co2dz_Game_World.cpp
+      ../game_objects/Camera.cpp
       ../game_objects/LTexture.cpp
     }
 
@@ -23,6 +24,7 @@ project (Co2dz) {
       ../game/game_world/Game_World.h
       ../game/game_menu/Co2dz_Game_Menu.h
       ../game/game_world/Co2dz_Game_World.h
+      ../game_objects/Camera.h
       ../game_objects/LTexture.h
     }
 

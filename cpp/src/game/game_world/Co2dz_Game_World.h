@@ -9,7 +9,7 @@
 #define _CO2DZ_GAME_WORLD_H_
 
 #include "Game_World.h"
-//#include "../../game_objects/Camera.h"
+#include "../../game_objects/Camera.h"
 //#include "../../game_objects/Game_Object.h"
 
 class Co2dz_Game_World : public Game_World
@@ -40,7 +40,7 @@ private:
   std::vector <SDL_Event> events_;
 
   // camera
-  //Camera * camera_;
+  Camera * camera_;
 
   // game objects
   //std::vector <Game_Object> * objects_;
