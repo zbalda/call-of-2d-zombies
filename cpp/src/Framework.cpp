@@ -19,15 +19,11 @@ Framework::Framework (void)
   , renderer_ (NULL)
   , game_menu_ (0)
   , game_world_ (0)
-  , game_options_ (0)
-  , game_over_ (0)
 {
   // TODO: initialize game objects with screen size
   // create game state objects
   this->game_menu_ = new Co2dz_Game_Menu ();
   this->game_world_ = new Co2dz_Game_World ();
-  this->game_options_ = new Co2dz_Game_Options ();
-  this->game_over_ = new Co2dz_Game_Over ();
 
   // initialize SDL and load media
   this->initialize();
@@ -44,8 +40,6 @@ Framework::~Framework (void)
   // delete game state objects
   delete this->game_menu_;
   delete this->game_world_;
-  delete this->game_options_;
-  delete this->game_over_;
 
   // destroy media and close SDL
   this->close();
@@ -165,12 +159,6 @@ bool Framework::process_input (void)
       case PLAYING :
         this->game_world_->handle_event(e);
         break;
-      case OPTIONS :
-        this->game_options_->handle_event(e);
-        break;
-      case GAME_OVER :
-        this->game_over_->handle_event(e);
-        break;
       default:
         std::cout << "Error: Invalid game state." << std::endl;
     }
@@ -194,12 +182,6 @@ Uint32 Framework::update (Uint32 lag)
         break;
       case PLAYING :
         this->game_world_->update();
-        break;
-      case OPTIONS :
-        this->game_options_->update();
-        break;
-      case GAME_OVER :
-        this->game_over_->update();
         break;
       default:
         std::cout << "Error: Invalid game state." << std::endl;
@@ -226,14 +208,6 @@ void Framework::render (Uint32 lag)
       break;
     case PLAYING :
       this->game_world_->draw(*this->renderer_, lag);
-      break;
-    case OPTIONS :
-      this->game_world_->draw(*this->renderer_, 0);
-      this->game_options_->draw(*this->renderer_, lag);
-      break;
-    case GAME_OVER :
-      this->game_world_->draw(*this->renderer_, 0);
-      this->game_over_->draw(*this->renderer_, lag);
       break;
     default:
       std::cout << "Error: Invalid game state." << std::endl;

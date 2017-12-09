@@ -20,14 +20,10 @@
 #include "game/Game.h"
 #include "game/game_menu/Game_Menu.h"
 #include "game/game_world/Game_World.h"
-#include "game/game_options/Game_Options.h"
-#include "game/game_over/Game_Over.h"
 
 // using Co2dz Game_Menu, Game_World, and Game_Over
 #include "game/game_menu/Co2dz_Game_Menu.h"
 #include "game/game_world/Co2dz_Game_World.h"
-#include "game/game_options/Co2dz_Game_Options.h"
-#include "game/game_over/Co2dz_Game_Over.h"
 
 class Framework
 {
@@ -98,11 +94,9 @@ private:
     // game state objects
     Game_Menu * game_menu_;
     Game_World * game_world_;
-    Game_Options * game_options_;
-    Game_Over * game_over_;
 
     // game states
-    enum game_states_ { MAIN_MENU, PLAYING, OPTIONS, GAME_OVER };;
+    enum game_states_ { MAIN_MENU, PLAYING };;
 
     // current game states
     game_states_ game_state_;
