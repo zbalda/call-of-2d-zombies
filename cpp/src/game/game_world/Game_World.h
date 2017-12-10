@@ -10,6 +10,9 @@
 
 #include "../Game.h"
 
+// forward declarations
+class Game_Object;
+
 class Game_World : public Game
 {
 public:
@@ -28,6 +31,9 @@ public:
 
     // update and draw
     virtual void update (SDL_Renderer & renderer, Uint32 lag) = 0;
+
+    // resolve collision
+    virtual void resolve_collision (Game_Object & object) = 0;
 };
 
 #endif  //  !defined _GAME_WORLD_H_

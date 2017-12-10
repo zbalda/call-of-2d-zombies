@@ -61,6 +61,11 @@ public:
   void kill (void);
 
   /*
+   * Moves object by velocities.
+   */
+  void move (void);
+
+  /*
    * Get x position of object.
    *
    * @return    x    Objects x position

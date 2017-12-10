@@ -13,9 +13,6 @@
 #include "../../game_objects/object_generators/Game_Object_Factory.h"
 #include "../../game_objects/object_generators/Game_Object_Factory_Easy.h"
 
-// forward declarations
-class Game_Object;
-
 class Co2dz_Game_World : public Game_World
 {
 public:
@@ -37,6 +34,9 @@ public:
 
     // update and draw
     virtual void update (SDL_Renderer & renderer, Uint32 lag);
+
+    // resolve collision
+    virtual void resolve_collision (Game_Object & object);
 
 private:
   // event queue

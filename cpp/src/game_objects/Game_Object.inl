@@ -24,6 +24,17 @@ void Game_Object::kill (void)
 }
 
 //
+// move
+//
+inline
+void Game_Object::move (void)
+{
+  // move object by its velocities
+  this->x_ += this->vel_x_;
+  this->y_ += this->vel_y_;
+}
+
+//
 // get_x
 //
 inline

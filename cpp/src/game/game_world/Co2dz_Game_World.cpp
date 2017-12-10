@@ -96,3 +96,11 @@ void Co2dz_Game_World::update (SDL_Renderer & renderer, Uint32 lag)
 	}
   this->events_.clear();
 }
+
+//
+// resolve_collision
+//
+void Co2dz_Game_World::resolve_collision (Game_Object & object)
+{
+  // TODO: handle collision
+}
