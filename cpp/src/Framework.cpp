@@ -9,7 +9,7 @@
 
 #define DEFAULT_SCREEN_WIDTH 1200
 #define DEFAULT_SCREEN_HEIGHT 800
-#define MS_PER_UPDATE 16
+#define MS_PER_UPDATE 20
 
 //
 // Framework

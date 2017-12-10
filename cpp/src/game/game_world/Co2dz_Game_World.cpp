@@ -45,7 +45,7 @@ void Co2dz_Game_World::initialize (void)
 {
   // TODO: read from file or database to build objects
 
-  this->camera_ = new Camera (1, -200, 200);
+  this->camera_ = new Camera (1, -100, 100);
   this->player_ = this->game_object_factory_->create_player();
 }
 
@@ -91,7 +91,6 @@ void Co2dz_Game_World::update (SDL_Renderer & renderer, Uint32 lag, Uint32 scree
   for(std::vector<SDL_Event>::iterator it = this->events_.begin(); it != this->events_.end(); it++) {
 		e = *it;
     if(e.type == SDL_KEYDOWN) {
-      std::cout << "key pressed" << std::endl;
     }
 	}
   this->events_.clear();

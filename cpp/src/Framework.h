@@ -87,6 +87,7 @@ private:
     SDL_Renderer * renderer_;
 
     // screen width and height
+    // TODO: dynamically set screen width and heigh on screen resize
     Uint32 screen_width_;
     Uint32 screen_height_;
 
