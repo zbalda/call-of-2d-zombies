@@ -27,7 +27,7 @@ Game_Object * Game_Object_Factory_Easy::create_player (void)
   components.push_back(new Player_Input_Component());
   components.push_back(new Player_Physics_Component());
   components.push_back(new Player_Graphics_Component());
-  return new Game_Object (components, 0, 0, 0, 0, 3, 40, 40);
+  return new Game_Object (components, 0, 0, 0, 0, 10, 40, 40);
 }
 
 //
@@ -39,5 +39,5 @@ Game_Object * Game_Object_Factory_Easy::create_enemy (int x, int y)
   std::vector<Component*> components;
   components.push_back(new Enemy_AI_Component());
   components.push_back(new Player_Graphics_Component());
-  return new Game_Object (components, x, y, 0, 0, 1, 60, 60);
+  return new Game_Object (components, x, y, 0, 0, 5, 60, 60);
 }
