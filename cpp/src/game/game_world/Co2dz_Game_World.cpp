@@ -45,7 +45,7 @@ void Co2dz_Game_World::initialize (void)
 {
   // TODO: read from file or database to build objects
 
-  this->camera_ = new Camera (1, -100, 100);
+  this->camera_ = new Camera (40, -100, 100);
   this->player_ = this->game_object_factory_->create_player();
 }
 

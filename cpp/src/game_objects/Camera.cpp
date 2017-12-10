@@ -30,7 +30,7 @@ Camera::~Camera (void)
 //
 // update
 //
-void Camera::update (SDL_Renderer & renderer, Uint32 screen_width, Uint32 screen_height, Game_Object & actor)
+void Camera::update (SDL_Renderer & renderer, int screen_width, int screen_height, Game_Object & actor)
 {
   // update renderer
   this->renderer_ = &renderer;
@@ -38,6 +38,14 @@ void Camera::update (SDL_Renderer & renderer, Uint32 screen_width, Uint32 screen
   // update screen width and heights
   screen_width_ = screen_width;
   screen_height_ = screen_height;
+
+  if(elasticity_ != 0) {
+    x_ += ((actor.get_x() + (actor.get_width() / 2)) - (this->x_ + (screen_width_ / 2))) / elasticity_;
+    y_ += ((actor.get_y() - (actor.get_height() / 2))  - (this->y_ - (screen_height_ / 2))) / elasticity_;
+  } else {
+    x_ += (actor.get_x() - (actor.get_width() / 2)) - (this->x_ + (screen_width_ / 2));
+    y_ += (actor.get_y() - (actor.get_height() / 2)) - (this->y_ - (screen_height_ / 2));
+  }
 }
 
 //

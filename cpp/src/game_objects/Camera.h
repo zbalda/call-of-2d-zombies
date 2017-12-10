@@ -11,6 +11,8 @@
 // using SDL
 #include <SDL2/SDL.h>
 
+#include <iostream>
+
 class Game_Object;
 
 class Camera
@@ -22,20 +24,10 @@ public:
   /// destructor
   ~Camera (void);
 
-  /*
-   * Updates each component.
-   *
-   * param[in]    world     Game world
-   * param[in]    camera    Camera to render to
-   */
-  void update (SDL_Renderer & renderer, Uint32 screen_width, Uint32 screen_height, Game_Object & actor);
+  // update renderer and camera
+  void update (SDL_Renderer & renderer, int screen_width, int screen_height, Game_Object & actor);
 
-  // TODO: take in renderer to render object to
-  /*
-   * Draws rectangle if it is visable by camera.
-   *
-   * param[in]    object    Rectangle object to draw
-   */
+  // draw object to screen
   void draw (Game_Object & object, Uint32 R, Uint32 G, Uint32 B, Uint32 A);
 
 private:
@@ -43,7 +35,7 @@ private:
   SDL_Renderer * renderer_;
 
   // screen width and height
-  Uint32 screen_width_, screen_height_;
+  int screen_width_, screen_height_;
 
   // how "tightly" camera follows object
   int elasticity_;
