@@ -34,6 +34,12 @@ public:
 
     // resolve collision
     virtual void resolve_collision (Game_Object & object) = 0;
+
+    // get players x position
+    virtual int get_player_x (void) = 0;
+
+    // get players y position
+    virtual int get_player_y (void) = 0;
 };
 
 #endif  //  !defined _GAME_WORLD_H_

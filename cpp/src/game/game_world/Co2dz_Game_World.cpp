@@ -103,3 +103,19 @@ void Co2dz_Game_World::resolve_collision (Game_Object & object)
 {
   // TODO: handle collision
 }
+
+//
+// get_player_x
+//
+int Co2dz_Game_World::get_player_x (void)
+{
+  return this->player_->get_x();
+}
+
+//
+// get_player_y
+//
+int Co2dz_Game_World::get_player_y (void)
+{
+  return this->player_->get_y();
+}

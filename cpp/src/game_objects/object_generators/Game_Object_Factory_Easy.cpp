@@ -27,7 +27,7 @@ Game_Object * Game_Object_Factory_Easy::create_player (void)
   components.push_back(new Player_Input_Component());
   components.push_back(new Player_Physics_Component());
   components.push_back(new Player_Graphics_Component());
-  return new Game_Object (components, 0, 0, 0, 0, 40, 40);
+  return new Game_Object (components, 0, 0, 0, 0, 3, 40, 40);
 }
 
 //

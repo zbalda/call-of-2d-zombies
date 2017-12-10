@@ -38,6 +38,12 @@ public:
     // resolve collision
     virtual void resolve_collision (Game_Object & object);
 
+    // get players x position
+    virtual int get_player_x (void);
+
+    // get players y position
+    virtual int get_player_y (void);
+
 private:
   // event queue
   std::vector <SDL_Event> events_;

@@ -21,7 +21,7 @@ class Game_Object
 {
 public:
   /// default constructor
-  Game_Object (std::vector<Component*> components, int x, int y, int vel_x, int vel_y, int height, int width);
+  Game_Object (std::vector<Component*> components, int x, int y, int vel_x, int vel_y, int max_velocity, int height, int width);
 
   /// destructor
   ~Game_Object (void);
@@ -108,6 +108,13 @@ public:
   void set_vel_y (int vel_y);
 
   /*
+   * Get max velocity.
+   *
+   * @return    Max velocity
+   */
+  int get_max_velocity (void);
+
+  /*
    * Get height of object.
    *
    * @return    height_   Height of object
@@ -130,6 +137,9 @@ private:
 
   // object velocity
   int vel_x_, vel_y_;
+
+  // max velocity
+  int max_velocity_;
 
   // object size
   int height_, width_;

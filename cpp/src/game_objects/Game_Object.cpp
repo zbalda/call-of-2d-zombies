@@ -15,12 +15,13 @@
 //
 // Game_Object
 //
-Game_Object::Game_Object (std::vector<Component*> components, int x, int y, int vel_x, int vel_y, int height, int width)
+Game_Object::Game_Object (std::vector<Component*> components, int x, int y, int vel_x, int vel_y, int max_velocity, int height, int width)
   : components_ (components)
   , x_ (x)
   , y_ (y)
   , vel_x_ (vel_x)
   , vel_y_ (vel_y)
+  , max_velocity_ (max_velocity)
   , height_ (height)
   , width_ (width)
   , alive_ (true)
@@ -53,7 +54,7 @@ void Game_Object::update (Game_World & world, Camera & camera)
 Game_Object * Game_Object::clone (void)
 {
   // TODO: add copy constructor to components and copy
-  return new Game_Object(components_, this->x_, this->y_, this->vel_x_, this->vel_y_, this->height_, this->width_);
+  return new Game_Object(components_, this->x_, this->y_, this->vel_x_, this->vel_y_, this->max_velocity_, this->height_, this->width_);
 }
 
 //

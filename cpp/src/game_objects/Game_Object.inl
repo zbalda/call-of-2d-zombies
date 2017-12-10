@@ -5,8 +5,6 @@
 //
 // zbalda
 
-#define MAX_VELOCITY 3
-
 //
 // is_alive
 //
@@ -82,10 +80,10 @@ void Game_Object::set_vel_x (int vel_x)
   this->vel_x_ = vel_x;
 
   // cap velocity
-  if(this->vel_x_ > MAX_VELOCITY) {
-    this->vel_x_ = MAX_VELOCITY;
-  } else if (this->vel_x_ < 0 - MAX_VELOCITY) {
-    this->vel_x_ = 0 - MAX_VELOCITY;
+  if(this->vel_x_ > max_velocity_) {
+    this->vel_x_ = max_velocity_;
+  } else if (this->vel_x_ < 0 - max_velocity_) {
+    this->vel_x_ = 0 - max_velocity_;
   }
 }
 
@@ -99,11 +97,20 @@ void Game_Object::set_vel_y (int vel_y)
   this->vel_y_ = vel_y;
 
   // cap velocity
-  if(this->vel_y_ > MAX_VELOCITY) {
-    this->vel_y_ = MAX_VELOCITY;
-  } else if (this->vel_y_ < 0 - MAX_VELOCITY) {
-    this->vel_y_ = 0 - MAX_VELOCITY;
+  if(this->vel_y_ > max_velocity_) {
+    this->vel_y_ = max_velocity_;
+  } else if (this->vel_y_ < 0 - max_velocity_) {
+    this->vel_y_ = 0 - max_velocity_;
   }
+}
+
+//
+// get_max_velocity
+//
+inline
+int Game_Object::get_max_velocity (void)
+{
+  return max_velocity_;
 }
 
 //
