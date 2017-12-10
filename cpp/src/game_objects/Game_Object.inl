@@ -103,3 +103,21 @@ void Game_Object::set_vel_y (int vel_y)
     this->vel_y_ = -5;
   }
 }
+
+//
+// get_height
+//
+inline
+int Game_Object::get_height (void) const
+{
+  return this->height_;
+}
+
+//
+// get_width
+//
+inline
+int Game_Object::get_width (void) const
+{
+  return this->width_;
+}

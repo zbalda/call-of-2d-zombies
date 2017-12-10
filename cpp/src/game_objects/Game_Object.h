@@ -21,7 +21,7 @@ class Game_Object
 {
 public:
   /// default constructor
-  Game_Object (std::vector<Component*> components, int x, int y, int vel_x, int vel_y);
+  Game_Object (std::vector<Component*> components, int x, int y, int vel_x, int vel_y, int height, int width);
 
   /// destructor
   ~Game_Object (void);
@@ -68,28 +68,28 @@ public:
   /*
    * Get x position of object.
    *
-   * @return    x    Objects x position
+   * @return    x_    Objects x position
    */
   int get_x (void) const;
 
   /*
    * Get y position of object.
    *
-   * @return    y   Objects y position
+   * @return    y_   Objects y position
    */
   int get_y (void) const;
 
   /*
    * Get x velocity of object.
    *
-   * @return    vel_x    Objects x velocity
+   * @return    vel_x_    Objects x velocity
    */
   int get_vel_x (void) const;
 
   /*
    * Get y velocity of object.
    *
-   * @return    vel_y   Objects y velocity
+   * @return    vel_y_    Objects y velocity
    */
   int get_vel_y (void) const;
 
@@ -107,6 +107,20 @@ public:
    */
   void set_vel_y (int vel_y);
 
+  /*
+   * Get height of object.
+   *
+   * @return    height_   Height of object
+   */
+  int get_height (void) const;
+
+  /*
+   * Get width of object.
+   *
+   * @return    width_    Width of object
+   */
+  int get_width (void) const;
+
 private:
   // object components
   std::vector <Component*> components_;
@@ -116,6 +130,9 @@ private:
 
   // object velocity
   int vel_x_, vel_y_;
+
+  // object size
+  int height_, width_;
 
   // for tracking if object is alive
   bool alive_;
