@@ -95,10 +95,4 @@ void Co2dz_Game_World::update (SDL_Renderer & renderer, Uint32 lag)
     }
 	}
   this->events_.clear();
-
-  // get key states
-  const Uint8* key_states = SDL_GetKeyboardState(NULL);
-  if(key_states[SDL_SCANCODE_UP]) {
-    std::cout << "up button" << std::endl;
-  }
 }

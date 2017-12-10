@@ -10,6 +10,9 @@
 
 #include "Input_Component.h"
 
+// using SDL
+#include <SDL2/SDL.h>
+
 class Player_Input_Component : public Input_Component
 {
 public:
@@ -24,6 +27,8 @@ public:
 
   // update game object
   virtual void update (Game_Object & object, Game_World & world, Camera & camera);
+private:
+  static const int ACCELERATION = 1;
 };
 
 #endif  //  !defined _PLAYER_INPUT_COMPONENT_H_

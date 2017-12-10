@@ -88,6 +88,20 @@ public:
    */
   int get_vel_y (void) const;
 
+  /*
+   * Set x velocity of object.
+   *
+   * @param[in]    vel_x    Objects x velocity
+   */
+  void set_vel_x (int vel_x);
+
+  /*
+   * Set y velocity of object.
+   *
+   * @param[in]    vel_y   Objects y velocity
+   */
+  void set_vel_y (int vel_y);
+
 private:
   // object components
   std::vector <Component*> components_;
