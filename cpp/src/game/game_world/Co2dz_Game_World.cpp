@@ -45,8 +45,16 @@ void Co2dz_Game_World::initialize (void)
 {
   // TODO: read from file or database to build objects
 
-  this->camera_ = new Camera (40, -100, 100);
+  this->camera_ = new Camera (0, -100, 100);
   this->player_ = this->game_object_factory_->create_player();
+  this->objects_.push_back(this->game_object_factory_->create_enemy(100, 100));
+  this->objects_.push_back(this->game_object_factory_->create_enemy(200, 800));
+  this->objects_.push_back(this->game_object_factory_->create_enemy(500, -200));
+  this->objects_.push_back(this->game_object_factory_->create_enemy(1000, 400));
+  this->objects_.push_back(this->game_object_factory_->create_enemy(-100, 650));
+  this->objects_.push_back(this->game_object_factory_->create_enemy(900, 900));
+  this->objects_.push_back(this->game_object_factory_->create_enemy(100, 600));
+  this->objects_.push_back(this->game_object_factory_->create_enemy(0, -350));
 }
 
 //
@@ -76,24 +84,26 @@ void Co2dz_Game_World::handle_event (SDL_Event e)
 //
 void Co2dz_Game_World::update (SDL_Renderer & renderer, Uint32 lag, Uint32 screen_width, Uint32 screen_height)
 {
-  // update camera to follow player
-  this->camera_->update(renderer, screen_width, screen_height, *this->player_);
-
-  // update player
-  this->player_->update(*this, *this->camera_);
-
-  // TODO: update game objects
-
   // event handler
-	SDL_Event e;
+  SDL_Event e;
 
-	// process input
+  // process input
   for(std::vector<SDL_Event>::iterator it = this->events_.begin(); it != this->events_.end(); it++) {
 		e = *it;
     if(e.type == SDL_KEYDOWN) {
     }
 	}
   this->events_.clear();
+
+  // update camera to follow player
+  this->camera_->update(renderer, screen_width, screen_height, *this->player_);
+
+  // update player
+  this->player_->update(*this, *this->camera_);
+
+  for(Uint32 i = 0; i < this->objects_.size(); i++) {
+    this->objects_[i]->update(*this, *this->camera_);
+  }
 }
 
 //

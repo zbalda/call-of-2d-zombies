@@ -33,7 +33,11 @@ Game_Object * Game_Object_Factory_Easy::create_player (void)
 //
 // create_enemy
 //
-Game_Object * Game_Object_Factory_Easy::create_enemy (void)
+Game_Object * Game_Object_Factory_Easy::create_enemy (int x, int y)
 {
-  return NULL;
+  // create player
+  std::vector<Component*> components;
+  components.push_back(new Enemy_AI_Component());
+  components.push_back(new Player_Graphics_Component());
+  return new Game_Object (components, x, y, 0, 0, 1, 60, 60);
 }

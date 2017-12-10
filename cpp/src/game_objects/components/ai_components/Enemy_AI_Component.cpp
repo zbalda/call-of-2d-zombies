@@ -33,21 +33,12 @@ void Enemy_AI_Component::recieve (int message)
 //
 void Enemy_AI_Component::update (Game_Object & object, Game_World & world, Camera & camera)
 {
-  // how far enemy is horizontally and vertically
-  int horisontal_dist = world.get_player_x() - object.get_x();
-  int vertical_dist = world.get_player_y() - object.get_y();
-
-  // prevent division by 0
-  if(horisontal_dist == 0) {
-    horisontal_dist = 1;
-  }
-  if(vertical_dist == 0) {
-    vertical_dist = 1;
-  }
+  // calculate angle between enemy and player
+  float radians = atan2(world.get_player_y() - object.get_y(), world.get_player_x() - object.get_x());
 
   // follow player
-  object.set_vel_x((horisontal_dist / vertical_dist) * object.get_max_velocity());
-  object.set_vel_y((vertical_dist / horisontal_dist) * object.get_max_velocity());
+  object.set_vel_x(acos(radians) * object.get_max_velocity());
+  object.set_vel_y(asin(radians) * object.get_max_velocity());
 
   // move and check collision
   object.move();

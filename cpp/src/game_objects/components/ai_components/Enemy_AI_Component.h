@@ -10,6 +10,8 @@
 
 #include "AI_Component.h"
 
+#include <math.h>
+
 class Enemy_AI_Component : public AI_Component
 {
 public:
