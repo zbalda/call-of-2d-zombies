@@ -27,7 +27,7 @@ public:
     virtual void handle_event (SDL_Event e) = 0;
 
     // update and draw
-    virtual void update (SDL_Renderer & renderer, Uint32 lag) = 0;
+    virtual void update (SDL_Renderer & renderer, Uint32 lag, Uint32 screen_width, Uint32 screen_height) = 0;
 };
 
 #endif  //  !defined _GAME_MENU_H_

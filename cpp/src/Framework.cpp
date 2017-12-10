@@ -7,8 +7,8 @@
 
 #include "Framework.h"
 
-#define DEFAULT_SCREEN_WIDTH 640
-#define DEFAULT_SCREEN_HEIGHT 480
+#define DEFAULT_SCREEN_WIDTH 1200
+#define DEFAULT_SCREEN_HEIGHT 800
 #define MS_PER_UPDATE 16
 
 //
@@ -19,6 +19,8 @@ Framework::Framework (void)
   , renderer_ (NULL)
   , game_menu_ (0)
   , game_world_ (0)
+  , screen_width_ (DEFAULT_SCREEN_WIDTH)
+  , screen_height_ (DEFAULT_SCREEN_HEIGHT)
 {
   // TODO: initialize game objects with screen size
   // create game state objects
@@ -179,10 +181,10 @@ Uint32 Framework::update (Uint32 lag)
     // update and draw
     switch(this->game_state_) {
       case MAIN_MENU :
-        this->game_menu_->update(*this->renderer_, lag);
+        this->game_menu_->update(*this->renderer_, lag, this->screen_width_, this->screen_height_);
         break;
       case PLAYING :
-        this->game_world_->update(*this->renderer_, lag);
+        this->game_world_->update(*this->renderer_, lag, this->screen_width_, this->screen_height_);
         break;
       default:
         std::cout << "Error: Invalid game state." << std::endl;

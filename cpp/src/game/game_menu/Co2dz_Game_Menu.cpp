@@ -83,7 +83,7 @@ void Co2dz_Game_Menu::handle_event (SDL_Event e)
 //
 // update
 //
-void Co2dz_Game_Menu::update (SDL_Renderer & renderer, Uint32 lag)
+void Co2dz_Game_Menu::update (SDL_Renderer & renderer, Uint32 lag, Uint32 screen_width, Uint32 screen_height)
 {
 	// increment timer
 	this->timer++;

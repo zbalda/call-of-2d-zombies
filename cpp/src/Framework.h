@@ -86,6 +86,10 @@ private:
     // the window renderer
     SDL_Renderer * renderer_;
 
+    // screen width and height
+    Uint32 screen_width_;
+    Uint32 screen_height_;
+
     // game state objects
     Game_Menu * game_menu_;
     Game_World * game_world_;
