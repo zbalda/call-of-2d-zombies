@@ -27,6 +27,15 @@ Co2dz_Game_World::Co2dz_Game_World (void)
 //
 Co2dz_Game_World::~Co2dz_Game_World (void)
 {
+  // free data
+  delete this->game_object_factory_;
+  delete this->camera_;
+  delete this->player_;
+
+  // delete all game objects
+  for(int i = 0; i < objects_.size(); i++) {
+    delete objects_[i];
+  }
 }
 
 //
@@ -36,7 +45,7 @@ void Co2dz_Game_World::initialize (void)
 {
   // TODO: read from file or database to build objects
 
-  this->camera_ = new Camera (1, 0, 0);
+  this->camera_ = new Camera (1, -200, 200);
   this->player_ = this->game_object_factory_->create_player();
 }
 

@@ -52,7 +52,7 @@ private:
   Game_Object * player_;
 
   // game objects
-  std::vector <Game_Object> * objects_;
+  std::vector <Game_Object*> objects_;
 };
 
 #endif  //  !defined _CO2DZ_GAME_WORLD_H_
