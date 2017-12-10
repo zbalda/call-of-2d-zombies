@@ -40,5 +40,15 @@ void Camera::update (SDL_Renderer & renderer, Game_Object & actor)
 //
 void Camera::draw (Game_Object & object, Uint32 R, Uint32 G, Uint32 B, Uint32 A)
 {
-  
+  // TODO: use screen size to dynamically render
+  if(0) { // if object is on screen
+    // calculate rectangle coordinates
+    int x = 0; //x coordinate of rectangle on screen
+    int y = 0; //y coordinate of rectangle on screen
+
+    // render rectangle
+    SDL_Rect object_rectangle = { x, y, object.get_width(), object.get_height() };
+    SDL_SetRenderDrawColor( this->renderer_, R, G, B, A );
+    SDL_RenderFillRect( this->renderer_, &object_rectangle );
+  }
 }
