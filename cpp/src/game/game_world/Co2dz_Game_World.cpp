@@ -67,6 +67,14 @@ void Co2dz_Game_World::handle_event (SDL_Event e)
 //
 void Co2dz_Game_World::update (SDL_Renderer & renderer, Uint32 lag)
 {
+  // update camera to follow player
+  this->camera_->update(renderer, *this->player_);
+
+  // update player
+  this->player_->update(*this, *this->camera_);
+
+  // TODO: update game objects
+
   // event handler
 	SDL_Event e;
 

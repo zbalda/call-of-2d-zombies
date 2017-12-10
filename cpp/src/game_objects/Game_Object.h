@@ -21,7 +21,7 @@ class Game_Object
 {
 public:
   /// default constructor
-  Game_Object (std::vector<Component*> components, int x, int y, int vel_x, int vel_y, bool alive);
+  Game_Object (std::vector<Component*> components, int x, int y, int vel_x, int vel_y);
 
   /// destructor
   ~Game_Object (void);

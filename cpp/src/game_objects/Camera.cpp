@@ -13,7 +13,8 @@
 // Camera
 //
 Camera::Camera (int elasticity, int x, int y)
-  : elasticity_ (elasticity)
+  : renderer_ (0)
+  , elasticity_ (elasticity)
   , x_ (x)
   , y_ (y)
 {
@@ -29,8 +30,9 @@ Camera::~Camera (void)
 //
 // update
 //
-void Camera::update (Game_Object & world)
+void Camera::update (SDL_Renderer & renderer, Game_Object & actor)
 {
+  this->renderer_ = &renderer;
 }
 
 //

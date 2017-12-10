@@ -28,7 +28,7 @@ public:
    * param[in]    world     Game world
    * param[in]    camera    Camera to render to
    */
-  void update (Game_Object & actor);
+  void update (SDL_Renderer & renderer, Game_Object & actor);
 
   // TODO: take in renderer to render object to
   /*
@@ -41,6 +41,9 @@ public:
   void draw (SDL_Rect object, int x, int y);
 
 private:
+  // the window renderer
+  SDL_Renderer * renderer_;
+
   // how "tightly" camera follows object
   int elasticity_;
 
