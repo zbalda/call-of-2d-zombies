@@ -38,6 +38,7 @@ void Camera::update (SDL_Renderer & renderer, Game_Object & actor)
 //
 // draw
 //
-void Camera::draw (SDL_Rect object, int x, int y)
+void Camera::draw (Game_Object & object, Uint32 R, Uint32 G, Uint32 B, Uint32 A)
 {
+  
 }

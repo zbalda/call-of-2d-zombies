@@ -10,6 +10,9 @@
 
 #include "Graphics_Component.h"
 
+// using SDL
+#include <SDL2/SDL.h>
+
 class Player_Graphics_Component : public Graphics_Component
 {
 public:
@@ -24,6 +27,10 @@ public:
 
   // update game object
   virtual void update (Game_Object & object, Game_World & world, Camera & camera);
+
+private:
+  // rectangle color and opacity
+  Uint32 R, G, B, A;
 };
 
 #endif  //  !defined _PLAYER_GRAPHICS_COMPONENT_H_

@@ -35,10 +35,8 @@ public:
    * Draws rectangle if it is visable by camera.
    *
    * param[in]    object    Rectangle object to draw
-   * param[in]    x         x coordinate of rectangle
-   * param[in]    y         y coordinate of rectangle
    */
-  void draw (SDL_Rect object, int x, int y);
+  void draw (Game_Object & object, Uint32 R, Uint32 G, Uint32 B, Uint32 A);
 
 private:
   // the window renderer

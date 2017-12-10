@@ -11,6 +11,10 @@
 // Player_Graphics_Component
 //
 Player_Graphics_Component::Player_Graphics_Component (void)
+  : R (0)
+  , G (153)
+  , B (255)
+  , A (255)
 {
 }
 
@@ -33,4 +37,5 @@ void Player_Graphics_Component::recieve (int message)
 //
 void Player_Graphics_Component::update (Game_Object & object, Game_World & world, Camera & camera)
 {
+  camera.draw(object, R, G, B, A);
 }
