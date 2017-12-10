@@ -40,6 +40,9 @@ public:
 
     // get players y position
     virtual int get_player_y (void) = 0;
+
+    // draw map
+    virtual void draw_map (SDL_Renderer & renderer, Uint32 screen_width, Uint32 screen_height) = 0;
 };
 
 #endif  //  !defined _GAME_WORLD_H_

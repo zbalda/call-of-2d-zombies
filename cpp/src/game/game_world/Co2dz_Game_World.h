@@ -44,6 +44,9 @@ public:
     // get players y position
     virtual int get_player_y (void);
 
+    // draw map
+    virtual void draw_map (SDL_Renderer & renderer, Uint32 screen_width, Uint32 screen_height);
+
 private:
   // event queue
   std::vector <SDL_Event> events_;

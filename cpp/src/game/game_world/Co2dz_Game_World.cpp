@@ -95,6 +95,9 @@ void Co2dz_Game_World::update (SDL_Renderer & renderer, Uint32 lag, Uint32 scree
 	}
   this->events_.clear();
 
+  // draw map
+  this->draw_map(renderer, screen_width, screen_height);
+
   // update camera to follow player
   this->camera_->update(renderer, screen_width, screen_height, *this->player_);
 
@@ -128,4 +131,13 @@ int Co2dz_Game_World::get_player_x (void)
 int Co2dz_Game_World::get_player_y (void)
 {
   return this->player_->get_y();
+}
+
+//
+// draw_map
+//
+void Co2dz_Game_World::draw_map (SDL_Renderer & renderer, Uint32 screen_width, Uint32 screen_height)
+{
+  // update camera to follow player
+  //this->camera_->update(renderer, screen_width, screen_height, *this->player_);
 }
