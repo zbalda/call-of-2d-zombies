@@ -27,8 +27,7 @@ public:
     virtual void handle_event (SDL_Event e) = 0;
 
     // update and draw
-    virtual void update (void) = 0;
-    virtual void draw (SDL_Renderer & renderer, Uint32 lag) = 0;
+    virtual void update (SDL_Renderer & renderer, Uint32 lag) = 0;
 };
 
 #endif  //  !defined _GAME_WORLD_H_

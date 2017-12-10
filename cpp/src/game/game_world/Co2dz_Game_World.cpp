@@ -55,7 +55,7 @@ void Co2dz_Game_World::handle_event (SDL_Event e)
 //
 // update
 //
-void Co2dz_Game_World::update (void)
+void Co2dz_Game_World::update (SDL_Renderer & renderer, Uint32 lag)
 {
   // event handler
 	SDL_Event e;
@@ -74,11 +74,4 @@ void Co2dz_Game_World::update (void)
   if(key_states[SDL_SCANCODE_UP]) {
     std::cout << "up button" << std::endl;
   }
-}
-
-//
-// draw
-//
-void Co2dz_Game_World::draw (SDL_Renderer & renderer, Uint32 lag)
-{
 }

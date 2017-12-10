@@ -63,16 +63,11 @@ protected:
     bool process_input (void);
 
     /**
-     * Update the game.
+     * Update and render the game
      *
      * @return   lag
      */
     Uint32 update (Uint32 lag);
-
-    /**
-     * Render the game.
-     */
-    void render (Uint32 lag);
 
     /**
      * Start a new game.

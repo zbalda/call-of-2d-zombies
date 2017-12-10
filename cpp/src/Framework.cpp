@@ -9,7 +9,8 @@
 
 #define DEFAULT_SCREEN_WIDTH 640
 #define DEFAULT_SCREEN_HEIGHT 480
-#define MS_PER_UPDATE 16
+//#define MS_PER_UPDATE 16
+#define MS_PER_UPDATE 1000
 
 //
 // Framework
@@ -29,7 +30,7 @@ Framework::Framework (void)
   this->initialize();
 
   // set game state to main menu
-  this->game_state_ = PLAYING;
+  this->game_state_ = MAIN_MENU;
 }
 
 //
@@ -131,9 +132,6 @@ void Framework::game_loop (void)
 
     // update
     lag = this->update(lag);
-
-    // render
-    this->render(lag);
   }
 }
 
@@ -175,46 +173,29 @@ Uint32 Framework::update (Uint32 lag)
 {
   // while not updated to current time
   while(lag >= MS_PER_UPDATE) {
-    // update
+    // clear screen
+    SDL_SetRenderDrawColor(this->renderer_, 0xFF, 0xFF, 0xFF, 0xFF);
+    SDL_RenderClear(this->renderer_);
+
+    // update and draw
     switch(this->game_state_) {
       case MAIN_MENU :
-        this->game_menu_->update();
+        this->game_menu_->update(*this->renderer_, lag);
         break;
       case PLAYING :
-        this->game_world_->update();
+        this->game_world_->update(*this->renderer_, lag);
         break;
       default:
         std::cout << "Error: Invalid game state." << std::endl;
     }
     // track update
     lag -= MS_PER_UPDATE;
+
+    // render to screen
+    SDL_RenderPresent(this->renderer_);
   }
+
   return lag;
-}
-
-//
-// render
-//
-void Framework::render (Uint32 lag)
-{
-  // clear screen
-  SDL_SetRenderDrawColor(this->renderer_, 0xFF, 0xFF, 0xFF, 0xFF);
-  SDL_RenderClear(this->renderer_);
-
-  // render
-  switch(this->game_state_) {
-    case MAIN_MENU :
-      this->game_menu_->draw(*this->renderer_, lag);
-      break;
-    case PLAYING :
-      this->game_world_->draw(*this->renderer_, lag);
-      break;
-    default:
-      std::cout << "Error: Invalid game state." << std::endl;
-  }
-
-  // draw to screen
-  SDL_RenderPresent(this->renderer_);
 }
 
 //

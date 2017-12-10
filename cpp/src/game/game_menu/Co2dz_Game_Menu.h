@@ -30,8 +30,7 @@ public:
     virtual void handle_event (SDL_Event e);
 
     // update and draw
-    virtual void update (void);
-    virtual void draw (SDL_Renderer & renderer, Uint32 lag);
+    virtual void update (SDL_Renderer & renderer, Uint32 lag);
 
 private:
     // globally used font

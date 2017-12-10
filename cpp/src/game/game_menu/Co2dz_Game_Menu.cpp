@@ -83,16 +83,11 @@ void Co2dz_Game_Menu::handle_event (SDL_Event e)
 //
 // update
 //
-void Co2dz_Game_Menu::update (void)
+void Co2dz_Game_Menu::update (SDL_Renderer & renderer, Uint32 lag)
 {
+	// increment timer
 	this->timer++;
-}
 
-//
-// draw
-//
-void Co2dz_Game_Menu::draw (SDL_Renderer & renderer, Uint32 lag)
-{
 	// set text color to black
 	SDL_Color text_color = { 0, 0, 0, 255 };
 
