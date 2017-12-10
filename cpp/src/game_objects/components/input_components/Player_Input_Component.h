@@ -12,6 +12,7 @@
 
 class Player_Input_Component : public Input_Component
 {
+public:
   /// default constructor
   Player_Input_Component (void);
 

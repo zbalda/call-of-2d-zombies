@@ -13,7 +13,13 @@
 // Co2dz_Game_World
 //
 Co2dz_Game_World::Co2dz_Game_World (void)
+  : game_object_factory_ (0)
+  , camera_ (0)
+  , player_ (0)
+  , objects_ (0)
 {
+  this->game_object_factory_ = (Game_Object_Factory*)(new Game_Object_Factory_Easy());
+  this->initialize();
 }
 
 //
@@ -28,6 +34,10 @@ Co2dz_Game_World::~Co2dz_Game_World (void)
 //
 void Co2dz_Game_World::initialize (void)
 {
+  // TODO: read from file or database to build objects
+
+  this->camera_ = new Camera (1, 0, 0);
+  this->player_ = this->game_object_factory_->create_player();
 }
 
 //

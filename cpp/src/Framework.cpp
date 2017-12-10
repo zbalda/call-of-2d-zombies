@@ -9,8 +9,7 @@
 
 #define DEFAULT_SCREEN_WIDTH 640
 #define DEFAULT_SCREEN_HEIGHT 480
-//#define MS_PER_UPDATE 16
-#define MS_PER_UPDATE 1000
+#define MS_PER_UPDATE 16
 
 //
 // Framework
@@ -30,7 +29,7 @@ Framework::Framework (void)
   this->initialize();
 
   // set game state to main menu
-  this->game_state_ = MAIN_MENU;
+  this->game_state_ = PLAYING;
 }
 
 //

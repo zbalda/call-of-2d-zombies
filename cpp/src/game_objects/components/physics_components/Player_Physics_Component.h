@@ -12,6 +12,7 @@
 
 class Player_Physics_Component : public Physics_Component
 {
+public:
   /// default constructor
   Player_Physics_Component (void);
 

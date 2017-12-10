@@ -12,6 +12,7 @@
 
 class Player_Graphics_Component : public Graphics_Component
 {
+public:
   /// default constructor
   Player_Graphics_Component (void);
 

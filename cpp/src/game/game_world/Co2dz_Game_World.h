@@ -10,6 +10,8 @@
 
 #include "Game_World.h"
 #include "../../game_objects/Camera.h"
+#include "../../game_objects/object_generators/Game_Object_Factory.h"
+#include "../../game_objects/object_generators/Game_Object_Factory_Easy.h"
 
 // forward declarations
 class Game_Object;
@@ -40,8 +42,14 @@ private:
   // event queue
   std::vector <SDL_Event> events_;
 
+  // game object factory
+  Game_Object_Factory * game_object_factory_;
+
   // camera
   Camera * camera_;
+
+  // player
+  Game_Object * player_;
 
   // game objects
   std::vector <Game_Object> * objects_;
