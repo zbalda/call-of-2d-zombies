@@ -36,8 +36,11 @@ In the end I simply created a camera object that has methods for both updating a
 
 
 #### The Factory and the Prototype
+The factory pattern is used to create game objects and the prototype pattern is used to spawn new objects throughout the game. During initialization, the game world uses the factory to create objects that it creates spawners from, and uses those spawners throughout the game to spawn enemies.
 
+I chose the factory over the builder because even though a game object can be "built of components", there isn't much variation in the game objects. A player has components for input, physics, and graphics, an enemy has components for AI and rendering, and a terrain object has a component for graphics. A builder might be useful for constructing more complex game objects, but for the simple game this is the factory makes things easier.
 
+To implement the prototype pattern I added a clone method to each game object. Clone copies an object and all of its components. A spawner, rather than being used by other objects to spawn game objects, spawns game objects itself. The game world has a collection of spawners that it updates at the end of each game loop. If the spawners timer reaches zero, it spawns its game object, adds the object to the vector of game objects in the game world, and resets its timer. Spawn delay can be decreased over time to increase the rate at which enemies spawn.
 
 
 ## Results
