@@ -29,7 +29,7 @@ Call of 2D Zombies is a two-dimensional zombie survival game.
 
 ### Built with
 
-#### [SDL](https://www.libsdl.org/) | 
+#### [SDL](https://www.libsdl.org/)
 
 ##### SDL Install
 
