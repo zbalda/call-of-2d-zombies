@@ -44,6 +44,7 @@ To implement the prototype pattern I added a clone method to each game object. C
 
 
 ## Results
+Planning and implementing the game loop and update method took the most time overall. Specifically, the update method was difficult to figure out. I initially planned to update all objects first, then check for collisions. However, because of how the component pattern updates and renders on each update, it made more since to have update and render on each update. 
 
 ## Known Problems
 
