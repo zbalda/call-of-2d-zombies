@@ -13,10 +13,13 @@
 // Co2dz_Game_World
 //
 Co2dz_Game_World::Co2dz_Game_World (void)
-  : game_object_factory_ (0)
+  : events_ (0)
+  , game_object_factory_ (0)
   , camera_ (0)
   , player_ (0)
   , objects_ (0)
+  , spawners_ (0)
+  , terrain_texture_ (0)
 {
   this->game_object_factory_ = (Game_Object_Factory*)(new Game_Object_Factory_Easy());
   this->initialize();
@@ -37,6 +40,11 @@ Co2dz_Game_World::~Co2dz_Game_World (void)
   for(int i = 0; i < objects_.size(); i++) {
     delete objects_[i];
   }
+
+  // delete all game object spawners
+  for(int i = 0; i < spawners_.size(); i++) {
+    delete spawners_[i];
+  }
 }
 
 //
@@ -44,19 +52,24 @@ Co2dz_Game_World::~Co2dz_Game_World (void)
 //
 void Co2dz_Game_World::initialize (void)
 {
-  // TODO: read from file or database to build objects
+  // TODO: read from file or database to build terrain and spawners
 
-  this->camera_ = new Camera (15, -100, 100);
+  this->camera_ = new Camera (15, -500, 600);
   this->player_ = this->game_object_factory_->create_player();
   this->terrain_texture_ = this->game_object_factory_->create_terrain(245, 245, 245, 355);
-  this->objects_.push_back(this->game_object_factory_->create_enemy(100, 100));
-  this->objects_.push_back(this->game_object_factory_->create_enemy(200, 800));
-  this->objects_.push_back(this->game_object_factory_->create_enemy(500, -200));
-  this->objects_.push_back(this->game_object_factory_->create_enemy(1000, 400));
-  this->objects_.push_back(this->game_object_factory_->create_enemy(-100, 650));
-  this->objects_.push_back(this->game_object_factory_->create_enemy(900, 900));
-  this->objects_.push_back(this->game_object_factory_->create_enemy(100, 600));
-  this->objects_.push_back(this->game_object_factory_->create_enemy(0, -350));
+
+  // explicitly create spawners
+  Game_Object * prototype1 = this->game_object_factory_->create_enemy(100, 100);
+  this->spawners_.push_back(new Game_Object_Spawner(*prototype, 200));
+
+  Game_Object * prototype2 = this->game_object_factory_->create_enemy(-100, 100);
+  this->spawners_.push_back(new Game_Object_Spawner(*prototype, 220));
+
+  Game_Object * prototype3 = this->game_object_factory_->create_enemy(-100, -100);
+  this->spawners_.push_back(new Game_Object_Spawner(*prototype, 180));
+
+  Game_Object * prototype4 = this->game_object_factory_->create_enemy(100, -100);
+  this->spawners_.push_back(new Game_Object_Spawner(*prototype, 240));
 }
 
 //
@@ -86,6 +99,9 @@ void Co2dz_Game_World::handle_event (SDL_Event e)
 //
 void Co2dz_Game_World::update (SDL_Renderer & renderer, Uint32 lag, Uint32 screen_width, Uint32 screen_height)
 {
+  // clear event list
+  this->events_.clear();
+
   // event handler
   SDL_Event e;
 
@@ -95,7 +111,6 @@ void Co2dz_Game_World::update (SDL_Renderer & renderer, Uint32 lag, Uint32 scree
     if(e.type == SDL_KEYDOWN) {
     }
 	}
-  this->events_.clear();
 
   // draw map
   this->draw_map();
@@ -106,8 +121,14 @@ void Co2dz_Game_World::update (SDL_Renderer & renderer, Uint32 lag, Uint32 scree
   // update player
   this->player_->update(*this, *this->camera_);
 
+  // update game objects
   for(Uint32 i = 0; i < this->objects_.size(); i++) {
     this->objects_[i]->update(*this, *this->camera_);
+  }
+
+  // update spawners
+  for(Uint32 i = 0; i < this->spawners_.size(); i++) {
+    this->spawners_[i]->update(this->objects_);
   }
 }
 

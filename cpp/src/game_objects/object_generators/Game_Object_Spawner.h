@@ -22,7 +22,7 @@ public:
   Game_Object * spawn (void);
 
   // update and possibly spawn
-  void update(std::vector<Game_Object*> objects);
+  void update (std::vector<Game_Object*> objects);
 
   // get spawn delay
   int get_spawn_delay (void);

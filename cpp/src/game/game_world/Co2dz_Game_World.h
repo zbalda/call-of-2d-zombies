@@ -12,6 +12,7 @@
 #include "../../game_objects/Camera.h"
 #include "../../game_objects/object_generators/Game_Object_Factory.h"
 #include "../../game_objects/object_generators/Game_Object_Factory_Easy.h"
+#include "../../game_objects/object_generators/Game_Object_Spawner.h"
 
 class Co2dz_Game_World : public Game_World
 {
@@ -62,6 +63,9 @@ private:
 
   // game objects
   std::vector <Game_Object*> objects_;
+
+  // spawners
+  std::vector <Game_Object_Spawner*> spawners_;
 
   // terrain texture
   Game_Object * terrain_texture_;
