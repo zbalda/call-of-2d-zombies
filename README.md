@@ -25,15 +25,22 @@ Instead of sleeping for the remainder of the cycle, my game loop updates and ren
 #### Component
 A game world is composed of game objects. Players, enemies, terrian, cameras for rendering views, etc.. My initial idea for structuring these objects was to create a base object class and have all concrete objects inherit from it. I started by creating a base object class with position, velocity, and health. Shortly after, I created a camera object and a static terrain object. I quickly realized that the camera didn't need health, and the static terrain object didn't need velocity. I could move health and velocity into a movable object class, but where would the camera fit into that? The camera needs to move too, but it doesn't make since to give the camera health.
 
-The solution to this mess is the component patter. Using the component pattern I created a base Game_Object "container". Game objects
+The solution to this inheritance mess is the component pattern. Using the component pattern, I created a base Game_Object container. This game objects container stores a vector of components. These components can handle user input, physics, graphics, ai, etc. A game object can be constructed of whatever components it needs to operate the way it needs. When a game object is updated it simply updates each of its components. It passes itself to each of the components so that each component can update any shared properties of the game object. Any properties that do not need to be shared are stored in the components themselves. Message broadcasting is also implemented for sharing data between components.
+
+When a game object is updated, it is given the game world and a camera. It uses the game world to update its physics component and the camera for rendering with its graphics component.
+
+##### The camera
+My initial plan was to have the camera be a game object but this did not end up working well at all. For my implementation I wanted the camera to take a game object on each update and follow that object. The issue with using the camera as a game object is that is should only be updated once per cycle. Updating it to follow an object on each cycle works, but when the camera is passed to other game objects for those game object to render to it, there is no way to render without updating again. One hack would be to add a render function to the game object, but this would be an anti pattern. Not all game objects need a render function. The component pattern works best with its only methods are those needed by all container objects, usually just an update method.
+
+In the end I simply created a camera object that has methods for both updating and rendering.
 
 
-#### Prototype
+#### The Factory and the Prototype
+
+
 
 
 ## Results
-
-## Challanges
 
 ## Known Problems
 
