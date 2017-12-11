@@ -22,6 +22,9 @@ public:
 
   // update game object
   virtual void update (Game_Object & object, Game_World & world, Camera & camera) = 0;
+
+  // clone component
+  virtual Component * clone (void) = 0;
 };
 
 #endif  //  !defined _INPUT_COMPONENT_H_

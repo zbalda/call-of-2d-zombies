@@ -39,3 +39,11 @@ void Player_Graphics_Component::update (Game_Object & object, Game_World & world
 {
   camera.draw(object, R, G, B, A);
 }
+
+//
+// clone
+//
+Component * Player_Graphics_Component::clone (void)
+{
+  return new Player_Graphics_Component(R, G, B, A);
+}

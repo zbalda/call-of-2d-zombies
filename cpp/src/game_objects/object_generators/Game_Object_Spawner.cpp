@@ -38,7 +38,7 @@ Game_Object * Game_Object_Spawner::spawn (void)
 //
 // spawn
 //
-void Game_Object_Spawner::update(std::vector<Game_Object*> objects)
+void Game_Object_Spawner::update(std::vector<Game_Object*> * objects)
 {
   // decrement timer
   this->timer_ -= 1;
@@ -46,7 +46,7 @@ void Game_Object_Spawner::update(std::vector<Game_Object*> objects)
   // if timer ends
   if(this->timer_ <= 0) {
     // spawn object
-    objects.push_back(this->spawn());
+    objects->push_back(this->spawn());
     // reset timer
     this->timer_ = this->spawn_delay_;
   }

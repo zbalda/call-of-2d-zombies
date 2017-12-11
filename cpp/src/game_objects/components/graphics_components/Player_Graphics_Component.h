@@ -28,6 +28,9 @@ public:
   // update game object
   virtual void update (Game_Object & object, Game_World & world, Camera & camera);
 
+  // clone component
+  virtual Component * clone (void);
+
 private:
   // rectangle color and opacity
   int R, G, B, A;

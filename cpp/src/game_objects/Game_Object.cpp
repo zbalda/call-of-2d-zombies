@@ -53,7 +53,15 @@ void Game_Object::update (Game_World & world, Camera & camera)
 //
 Game_Object * Game_Object::clone (void)
 {
-  // TODO: add copy constructor to components and copy
+  // for copying components
+  std::vector <Component*> components;
+
+  // copy components
+  for(Uint32 i = 0; i < components_.size(); i++) {
+    components.push_back(components_[i]->clone());
+  }
+
+  // return copy of game object
   return new Game_Object(components_, this->x_, this->y_, this->vel_x_, this->vel_y_, this->max_velocity_, this->height_, this->width_);
 }
 

@@ -36,3 +36,11 @@ void Player_Physics_Component::update (Game_Object & object, Game_World & world,
   object.move();
   world.resolve_collision(object);
 }
+
+//
+// clone
+//
+Component * Player_Physics_Component::clone (void)
+{
+  return new Player_Physics_Component();
+}

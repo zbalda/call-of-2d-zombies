@@ -59,3 +59,11 @@ void Enemy_AI_Component::update (Game_Object & object, Game_World & world, Camer
   object.move();
   world.resolve_collision(object);
 }
+
+//
+// clone
+//
+Component * Enemy_AI_Component::clone (void)
+{
+  return new Enemy_AI_Component();
+}

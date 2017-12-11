@@ -52,23 +52,23 @@ Co2dz_Game_World::~Co2dz_Game_World (void)
 //
 void Co2dz_Game_World::initialize (void)
 {
-  // TODO: read from file or database to build terrain and spawners
-
+  // create camera, player, and terrain texture
   this->camera_ = new Camera (15, -500, 600);
   this->player_ = this->game_object_factory_->create_player();
   this->terrain_texture_ = this->game_object_factory_->create_terrain(245, 245, 245, 355);
 
+  // TODO: read from file or database to build terrain and spawners
   // explicitly create spawners
-  Game_Object * prototype1 = this->game_object_factory_->create_enemy(100, 100, 3, 100, 100, 95, 100, 80, 355);
+  Game_Object * prototype1 = this->game_object_factory_->create_enemy(5000, 4000, 3, 100, 100, 95, 100, 80, 355);
   this->spawners_.push_back(new Game_Object_Spawner(*prototype1, 200));
 
-  Game_Object * prototype2 = this->game_object_factory_->create_enemy(-100, 100, 4, 70, 70, 190, 60, 70, 355);
+  Game_Object * prototype2 = this->game_object_factory_->create_enemy(-4000, 6000, 4, 70, 70, 190, 60, 70, 355);
   this->spawners_.push_back(new Game_Object_Spawner(*prototype2, 220));
 
-  Game_Object * prototype3 = this->game_object_factory_->create_enemy(-100, -100, 5, 45, 45, 75, 160, 100, 355);
+  Game_Object * prototype3 = this->game_object_factory_->create_enemy(-4500, -5500, 5, 45, 45, 75, 160, 100, 355);
   this->spawners_.push_back(new Game_Object_Spawner(*prototype3, 180));
 
-  Game_Object * prototype4 = this->game_object_factory_->create_enemy(100, -100, 6, 30, 30, 160, 190, 55, 355);
+  Game_Object * prototype4 = this->game_object_factory_->create_enemy(7000, -6000, 6, 30, 30, 160, 190, 55, 355);
   this->spawners_.push_back(new Game_Object_Spawner(*prototype4, 240));
 }
 
@@ -123,13 +123,13 @@ void Co2dz_Game_World::update (SDL_Renderer & renderer, Uint32 lag, Uint32 scree
   this->player_->update(*this, *this->camera_);
 
   // update game objects
-  for(Uint32 i = 0; i < this->objects_.size(); i++) {
+  for(int i = 0; i < this->objects_.size(); i++) {
     this->objects_[i]->update(*this, *this->camera_);
   }
 
   // update spawners
-  for(Uint32 i = 0; i < this->spawners_.size(); i++) {
-    //this->spawners_[i]->update(this->objects_);
+  for(int i = 0; i < this->spawners_.size(); i++) {
+    this->spawners_[i]->update(&this->objects_);
   }
 }
 

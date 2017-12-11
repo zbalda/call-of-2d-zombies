@@ -72,3 +72,11 @@ void Player_Input_Component::update (Game_Object & object, Game_World & world, C
     }
   }
 }
+
+//
+// clone
+//
+Component * Player_Input_Component::clone (void)
+{
+  return new Player_Input_Component();
+}
