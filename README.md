@@ -10,7 +10,7 @@ Call of 2D Zombies is a two-dimensional zombie survival game written in C++ usin
 The goal of this project was to refactor a simple two-dimensional game I had created in CSCI 24000. The purpose was to apply good software design principles, use design patterns where they were suitable, and eliminate as much code rot as possible.
 
 ## Design
-#### TODO: include UML diagram
+![UML_Diagram.png](cpp/src/resources/UML_Diagram.png)
 
 ## Results
 
