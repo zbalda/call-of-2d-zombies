@@ -18,21 +18,18 @@ Call of 2D Zombies is a two-dimensional zombie survival game.
 
 
 
+## Other
 
 ### Useful Resources
 
-#### Design Patterns
+#### [Game Programming Patterns](http://gameprogrammingpatterns.com/contents.html)
 
-[Game Programming Patterns](http://gameprogrammingpatterns.com/contents.html)
+#### [SDL Tutorials](http://lazyfoo.net/tutorials/SDL/index.php)
 
 
 ### Built with
 
-#### SDL
-
-[SDL](https://www.libsdl.org/)
-
-[SDL Tutorial](http://lazyfoo.net/tutorials/SDL/index.php)
+#### [SDL](https://www.libsdl.org/) | 
 
 ##### SDL Install
 
