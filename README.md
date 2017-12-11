@@ -20,7 +20,7 @@ A simple implementation of a game loop might mark the start time of an "MVC cycl
 
 One problem with this implementation is that it doesn't account for the case in which processing input, updating, and rendering takes longer than the "tick rate" of the game.
 
-Instead of sleeping for the remainder of the cycle, my game loop updates and renders the appropriate amount of times on each game loop based on how lagged behind the current state and view of the game is. Lag, in this case, is the number of milliseconds the current game model and view is behind the current time. Lag is updated each game loop, and the game model is only updated and rendered every time the lag reaches the tick rate (i.e. milliseconds per update). After which, lag is updated (i.e. milliseconds per update is subtracted from lag). This implementation handles the case in which the game needs to play "catch up" by dynamically updating and rendering the appropriate amount of times based on how lagged behind it is.
+Instead of sleeping for the remainder of the cycle, the game loop I have implemented updates and renders the appropriate amount of times on each game loop based on how lagged behind the current state and view of the game is. Lag, in this case, is the number of milliseconds the current game model and view is behind the current time. Lag is updated each game loop, and the game model is only updated and rendered every time the lag reaches the tick rate (i.e. milliseconds per update). After which, lag is updated (i.e. milliseconds per update is subtracted from lag). This implementation handles the case in which the game needs to play "catch up" by dynamically updating and rendering the appropriate amount of times based on how lagged behind it is.
 
 #### Component
 A game world is composed of game objects. Players, enemies, terrian, cameras for rendering views, etc.. My initial idea for structuring these objects was to create a base object class and have all concrete objects inherit from it. I started by creating a base object class with position, velocity, and health. Shortly after, I created a camera object and a static terrain object. I quickly realized that the camera didn't need health, and the static terrain object didn't need velocity. I could move health and velocity into a movable object class, but where would the camera fit into that? The camera needs to move too, but it doesn't make since to give the camera health.
@@ -65,7 +65,7 @@ Planning and implementing the game loop and update method took the most time ove
 
 #### [SDL](https://www.libsdl.org/)
 
-##### SDL Install
+##### SDL Install on Ubuntu
 
 `apt-cache search libsdl2`
 
