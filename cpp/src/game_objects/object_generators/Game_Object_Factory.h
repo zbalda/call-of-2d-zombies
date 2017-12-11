@@ -23,7 +23,7 @@ public:
 
     // virtual game object creation methods
     virtual Game_Object * create_player (void) = 0;
-    virtual Game_Object * create_enemy (int x, int y) = 0;
+    virtual Game_Object * create_enemy (int x, int y, int speed, int height, int width, int r, int g, int b, int a) = 0;
     virtual Game_Object * create_terrain (int r, int g, int b, int a) = 0;
 };
 

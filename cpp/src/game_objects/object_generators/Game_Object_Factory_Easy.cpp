@@ -33,13 +33,13 @@ Game_Object * Game_Object_Factory_Easy::create_player (void)
 //
 // create_enemy
 //
-Game_Object * Game_Object_Factory_Easy::create_enemy (int x, int y)
+Game_Object * Game_Object_Factory_Easy::create_enemy (int x, int y, int speed, int height, int width, int r, int g, int b, int a)
 {
-  // create player
+  // create enemy
   std::vector<Component*> components;
   components.push_back(new Enemy_AI_Component());
-  components.push_back(new Player_Graphics_Component(183, 113, 93, 255));
-  return new Game_Object (components, x, y, 0, 0, 5, 60, 60);
+  components.push_back(new Player_Graphics_Component(r, g, b, a));
+  return new Game_Object (components, x, y, 0, 0, speed, height, width);
 }
 
 //
@@ -47,7 +47,7 @@ Game_Object * Game_Object_Factory_Easy::create_enemy (int x, int y)
 //
 Game_Object * Game_Object_Factory_Easy::create_terrain (int r, int g, int b, int a)
 {
-  // create player
+  // create terrain
   std::vector<Component*> components;
   components.push_back(new Player_Graphics_Component(r, g, b, a));
   return new Game_Object (components, 0, 0, 0, 0, 0, 0, 0);
