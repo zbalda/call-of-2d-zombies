@@ -10,11 +10,11 @@
 //
 // Player_Graphics_Component
 //
-Player_Graphics_Component::Player_Graphics_Component (void)
-  : R (0)
-  , G (153)
-  , B (255)
-  , A (255)
+Player_Graphics_Component::Player_Graphics_Component (int r, int g, int b, int a)
+  : R (r)
+  , G (g)
+  , B (b)
+  , A (a)
 {
 }
 

@@ -17,7 +17,7 @@ class Player_Graphics_Component : public Graphics_Component
 {
 public:
   /// default constructor
-  Player_Graphics_Component (void);
+  Player_Graphics_Component (int r, int g, int b, int a);
 
   /// destructor
   virtual ~Player_Graphics_Component (void);
@@ -30,7 +30,7 @@ public:
 
 private:
   // rectangle color and opacity
-  Uint32 R, G, B, A;
+  int R, G, B, A;
 };
 
 #endif  //  !defined _PLAYER_GRAPHICS_COMPONENT_H_

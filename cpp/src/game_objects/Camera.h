@@ -28,7 +28,7 @@ public:
   void update (SDL_Renderer & renderer, int screen_width, int screen_height, Game_Object & actor);
 
   // draw object to screen
-  void draw (Game_Object & object, Uint32 R, Uint32 G, Uint32 B, Uint32 A);
+  void draw (Game_Object & object, int R, int G, int B, int A);
 
 private:
   // the window renderer

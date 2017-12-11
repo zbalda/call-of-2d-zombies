@@ -51,7 +51,7 @@ void Camera::update (SDL_Renderer & renderer, int screen_width, int screen_heigh
 //
 // draw
 //
-void Camera::draw (Game_Object & object, Uint32 R, Uint32 G, Uint32 B, Uint32 A)
+void Camera::draw (Game_Object & object, int R, int G, int B, int A)
 {
   // render rectangle
   SDL_Rect object_rectangle = { 0 - (this->x_ - object.get_x()), this->y_ - object.get_y(), object.get_width(), object.get_height() };

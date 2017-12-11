@@ -34,6 +34,7 @@ public:
     // virtual game object creation methods
     virtual Game_Object * create_player (void);
     virtual Game_Object * create_enemy (int x, int y);
+    virtual Game_Object * create_terrain (int r, int g, int b, int a);
 };
 
 #endif  // !defined _GAME_OBECT_FACTORY_EASY_H_
