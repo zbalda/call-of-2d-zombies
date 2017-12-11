@@ -45,7 +45,7 @@ public:
     virtual int get_player_y (void);
 
     // draw map
-    virtual void draw_map (SDL_Renderer & renderer, Uint32 screen_width, Uint32 screen_height);
+    virtual void draw_map (void);
 
 private:
   // event queue
@@ -62,6 +62,9 @@ private:
 
   // game objects
   std::vector <Game_Object*> objects_;
+
+  // terrain texture
+  Game_Object * terrain_texture_;
 };
 
 #endif  //  !defined _CO2DZ_GAME_WORLD_H_

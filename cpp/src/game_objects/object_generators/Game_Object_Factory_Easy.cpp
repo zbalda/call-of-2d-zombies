@@ -49,6 +49,6 @@ Game_Object * Game_Object_Factory_Easy::create_terrain (int r, int g, int b, int
 {
   // create player
   std::vector<Component*> components;
-  components.push_back(new Player_Graphics_Component(150, 150, 150, 30));
+  components.push_back(new Player_Graphics_Component(r, g, b, a));
   return new Game_Object (components, 0, 0, 0, 0, 0, 0, 0);
 }

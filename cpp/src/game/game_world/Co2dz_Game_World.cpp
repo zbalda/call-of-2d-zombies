@@ -31,6 +31,7 @@ Co2dz_Game_World::~Co2dz_Game_World (void)
   delete this->game_object_factory_;
   delete this->camera_;
   delete this->player_;
+  delete this->terrain_texture_;
 
   // delete all game objects
   for(int i = 0; i < objects_.size(); i++) {
@@ -45,8 +46,9 @@ void Co2dz_Game_World::initialize (void)
 {
   // TODO: read from file or database to build objects
 
-  this->camera_ = new Camera (0, -100, 100);
+  this->camera_ = new Camera (15, -100, 100);
   this->player_ = this->game_object_factory_->create_player();
+  this->terrain_texture_ = this->game_object_factory_->create_terrain(245, 245, 245, 355);
   this->objects_.push_back(this->game_object_factory_->create_enemy(100, 100));
   this->objects_.push_back(this->game_object_factory_->create_enemy(200, 800));
   this->objects_.push_back(this->game_object_factory_->create_enemy(500, -200));
@@ -96,7 +98,7 @@ void Co2dz_Game_World::update (SDL_Renderer & renderer, Uint32 lag, Uint32 scree
   this->events_.clear();
 
   // draw map
-  this->draw_map(renderer, screen_width, screen_height);
+  this->draw_map();
 
   // update camera to follow player
   this->camera_->update(renderer, screen_width, screen_height, *this->player_);
@@ -136,8 +138,27 @@ int Co2dz_Game_World::get_player_y (void)
 //
 // draw_map
 //
-void Co2dz_Game_World::draw_map (SDL_Renderer & renderer, Uint32 screen_width, Uint32 screen_height)
+void Co2dz_Game_World::draw_map (void)
 {
-  // update camera to follow player
-  //this->camera_->update(renderer, screen_width, screen_height, *this->player_);
+  // loop through and render all vertical bars
+  this->terrain_texture_->set_y(5000);
+  for(int i = -5000; i < 5000; i += 100) {
+    this->terrain_texture_->set_x(i);
+    this->terrain_texture_->set_width(50);
+    this->terrain_texture_->set_height(10000);
+
+    // update player
+    this->terrain_texture_->update(*this, *this->camera_);
+  }
+
+  // loop through and render all horizontal bars
+  this->terrain_texture_->set_x(-5000);
+  for(int i = -5000; i < 5000; i += 100) {
+    this->terrain_texture_->set_y(i);
+    this->terrain_texture_->set_width(10000);
+    this->terrain_texture_->set_height(50);
+
+    // update player
+    this->terrain_texture_->update(*this, *this->camera_);
+  }
 }

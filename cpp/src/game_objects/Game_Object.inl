@@ -53,6 +53,24 @@ int Game_Object::get_y (void) const
 }
 
 //
+// set_x
+//
+inline
+int Game_Object::set_x (int x)
+{
+  this->x_ = x;
+}
+
+//
+// set_y
+//
+inline
+int Game_Object::set_y (int y)
+{
+  this->y_ = y;
+}
+
+//
 // get_vel_x
 //
 inline
@@ -129,4 +147,22 @@ inline
 int Game_Object::get_width (void) const
 {
   return this->width_;
+}
+
+//
+// set_height
+//
+inline
+int Game_Object::set_height (int height)
+{
+  this->height_ = height;
+}
+
+//
+// set_width
+//
+inline
+int Game_Object::set_width (int width)
+{
+  this->width_ = width;
 }

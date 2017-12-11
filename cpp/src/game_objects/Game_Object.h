@@ -80,6 +80,16 @@ public:
   int get_y (void) const;
 
   /*
+   * Set x position of object.
+   */
+  int set_x (int x);
+
+  /*
+   * set y position of object.
+   */
+  int set_y (int y);
+
+  /*
    * Get x velocity of object.
    *
    * @return    vel_x_    Objects x velocity
@@ -127,6 +137,16 @@ public:
    * @return    width_    Width of object
    */
   int get_width (void) const;
+
+  /*
+   * Set height of object.
+   */
+  int set_height (int height);
+
+  /*
+   * Set width of object.
+   */
+  int set_width (int width);
 
 private:
   // object components
