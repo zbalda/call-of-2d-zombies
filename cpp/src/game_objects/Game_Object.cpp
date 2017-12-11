@@ -62,7 +62,7 @@ Game_Object * Game_Object::clone (void)
   }
 
   // return copy of game object
-  return new Game_Object(components_, this->x_, this->y_, this->vel_x_, this->vel_y_, this->max_velocity_, this->height_, this->width_);
+  return new Game_Object(components, this->x_, this->y_, this->vel_x_, this->vel_y_, this->max_velocity_, this->height_, this->width_);
 }
 
 //

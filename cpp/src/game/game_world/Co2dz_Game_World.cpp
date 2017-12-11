@@ -38,12 +38,16 @@ Co2dz_Game_World::~Co2dz_Game_World (void)
 
   // delete all game objects
   for(int i = 0; i < objects_.size(); i++) {
-    delete objects_[i];
+    if(objects_[i] != 0) {
+      delete objects_[i];
+    }
   }
 
   // delete all game object spawners
   for(int i = 0; i < spawners_.size(); i++) {
-    delete spawners_[i];
+    if(spawners_[i] != 0) {
+      delete spawners_[i];
+    }
   }
 }
 
@@ -59,16 +63,16 @@ void Co2dz_Game_World::initialize (void)
 
   // TODO: read from file or database to build terrain and spawners
   // explicitly create spawners
-  Game_Object * prototype1 = this->game_object_factory_->create_enemy(5000, 4000, 3, 100, 100, 95, 100, 80, 355);
+  Game_Object * prototype1 = this->game_object_factory_->create_enemy(2500, 2000, 3, 100, 100, 95, 100, 80, 355);
   this->spawners_.push_back(new Game_Object_Spawner(*prototype1, 200));
 
-  Game_Object * prototype2 = this->game_object_factory_->create_enemy(-4000, 6000, 4, 70, 70, 190, 60, 70, 355);
+  Game_Object * prototype2 = this->game_object_factory_->create_enemy(-2000, 3000, 4, 70, 70, 190, 60, 70, 355);
   this->spawners_.push_back(new Game_Object_Spawner(*prototype2, 220));
 
-  Game_Object * prototype3 = this->game_object_factory_->create_enemy(-4500, -5500, 5, 45, 45, 75, 160, 100, 355);
+  Game_Object * prototype3 = this->game_object_factory_->create_enemy(-2250, -2750, 5, 45, 45, 75, 160, 100, 355);
   this->spawners_.push_back(new Game_Object_Spawner(*prototype3, 180));
 
-  Game_Object * prototype4 = this->game_object_factory_->create_enemy(7000, -6000, 6, 30, 30, 160, 190, 55, 355);
+  Game_Object * prototype4 = this->game_object_factory_->create_enemy(3500, -3000, 6, 30, 30, 160, 190, 55, 355);
   this->spawners_.push_back(new Game_Object_Spawner(*prototype4, 240));
 }
 
