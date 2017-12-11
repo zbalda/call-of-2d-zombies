@@ -3,6 +3,23 @@
 
 Call of 2D Zombies is a two-dimensional zombie survival game.
 
+## Goal
+
+## Design
+#### TODO: include UML diagram
+
+## Results
+
+## Challanges
+
+## Known Problems
+
+## Additional Notes
+
+
+
+
+
 ## Design Patterns
 
 [Game Programming Patterns](http://gameprogrammingpatterns.com/contents.html)
