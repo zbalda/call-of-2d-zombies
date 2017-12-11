@@ -3,6 +3,8 @@
 
 Call of 2D Zombies is a two-dimensional zombie survival game written in C++ using SDL libraries. The player controls a small character using the arrow keys and tries to avoid enemies that chase it.
 
+![cod2z.png](cpp/src/resources/co2dz.png)
+
 ### TODO: Include screen shot
 
 ## Goal
