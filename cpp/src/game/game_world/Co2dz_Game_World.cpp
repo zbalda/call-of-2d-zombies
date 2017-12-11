@@ -166,6 +166,8 @@ int Co2dz_Game_World::get_player_y (void)
 //
 void Co2dz_Game_World::draw_map (void)
 {
+  // TODO: dynamically render map (i.e. only render part of map camera can see)
+
   // loop through and render all vertical bars
   this->terrain_texture_->set_y(5000);
   for(int i = -5000; i < 5000; i += 100) {
