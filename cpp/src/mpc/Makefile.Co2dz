@@ -31,8 +31,8 @@ LIBPREFIX     = lib
 LIBSUFFIX     = 
 GENFLAGS      = -O
 LDLIBS        = -l"SDL2_ttf$(LIBSUFFIX)" -l"SDL2_image$(LIBSUFFIX)" -l"SDL2$(LIBSUFFIX)" -ldl $(subst lib,-l,$(sort $(basename $(notdir $(wildcard /usr/lib/librt.so /lib/librt.so))))) -lpthread
-OBJS          = ../main$(OBJEXT) ../Framework$(OBJEXT) ../game/game_menu/Co2dz_Game_Menu$(OBJEXT) ../game/game_world/Co2dz_Game_World$(OBJEXT) ../game_objects/Camera$(OBJEXT) ../game_objects/Game_Object$(OBJEXT) ../game_objects/components/graphics_components/Player_Graphics_Component$(OBJEXT) ../game_objects/components/input_components/Player_Input_Component$(OBJEXT) ../game_objects/components/physics_components/Player_Physics_Component$(OBJEXT) ../game_objects/components/ai_components/Enemy_AI_Component$(OBJEXT) ../game_objects/object_generators/Game_Object_Factory_Easy$(OBJEXT) ../game_objects/object_generators/Game_Object_Spawner$(OBJEXT) ../game_objects/LTexture$(OBJEXT)
-SRC           = ../main.cpp ../Framework.cpp ../game/game_menu/Co2dz_Game_Menu.cpp ../game/game_world/Co2dz_Game_World.cpp ../game_objects/Camera.cpp ../game_objects/Game_Object.cpp ../game_objects/components/graphics_components/Player_Graphics_Component.cpp ../game_objects/components/input_components/Player_Input_Component.cpp ../game_objects/components/physics_components/Player_Physics_Component.cpp ../game_objects/components/ai_components/Enemy_AI_Component.cpp ../game_objects/object_generators/Game_Object_Factory_Easy.cpp ../game_objects/object_generators/Game_Object_Spawner.cpp ../game_objects/LTexture.cpp
+OBJS          = ../main$(OBJEXT) ../Framework$(OBJEXT) ../game/game_menu/Co2dz_Game_Menu$(OBJEXT) ../game/game_world/Co2dz_Game_World$(OBJEXT) ../game_objects/Camera$(OBJEXT) ../game_objects/Game_Object$(OBJEXT) ../game_objects/components/graphics_components/Player_Graphics_Component$(OBJEXT) ../game_objects/components/input_components/Player_Input_Component$(OBJEXT) ../game_objects/components/physics_components/Player_Physics_Component$(OBJEXT) ../game_objects/components/ai_components/Enemy_AI_Component$(OBJEXT) ../game_objects/object_generators/Game_Object_Factory_Easy$(OBJEXT) ../game_objects/object_generators/Game_Object_Spawner$(OBJEXT)
+SRC           = ../main.cpp ../Framework.cpp ../game/game_menu/Co2dz_Game_Menu.cpp ../game/game_world/Co2dz_Game_World.cpp ../game_objects/Camera.cpp ../game_objects/Game_Object.cpp ../game_objects/components/graphics_components/Player_Graphics_Component.cpp ../game_objects/components/input_components/Player_Input_Component.cpp ../game_objects/components/physics_components/Player_Physics_Component.cpp ../game_objects/components/ai_components/Enemy_AI_Component.cpp ../game_objects/object_generators/Game_Object_Factory_Easy.cpp ../game_objects/object_generators/Game_Object_Spawner.cpp
 LINK.cc       = $(LD) $(LDFLAGS)
 EXPORTFLAGS   = 
 DEPLIBS       = $(foreach lib, SDL2_ttf$(LIBSUFFIX) SDL2_image$(LIBSUFFIX) SDL2$(LIBSUFFIX) , $(foreach libpath, ., $(wildcard $(libpath)/lib$(lib).a)))
@@ -85,9 +85,6 @@ generated: $(GENERATED_DIRTY)
 
 ../game_objects/object_generators/Game_Object_Spawner$(OBJEXT): ../game_objects/object_generators/Game_Object_Spawner.cpp
 	$(COMPILE.cc) $(EXPORTFLAGS) $(OUTPUT_OPTION) ../game_objects/object_generators/Game_Object_Spawner.cpp
-
-../game_objects/LTexture$(OBJEXT): ../game_objects/LTexture.cpp
-	$(COMPILE.cc) $(EXPORTFLAGS) $(OUTPUT_OPTION) ../game_objects/LTexture.cpp
 
 clean:
 	-$(RM) $(OBJS)

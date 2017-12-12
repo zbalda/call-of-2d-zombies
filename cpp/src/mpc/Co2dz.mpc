@@ -21,7 +21,6 @@ project (Co2dz) {
       ../game_objects/components/ai_components/Enemy_AI_Component.cpp
       ../game_objects/object_generators/Game_Object_Factory_Easy.cpp
       ../game_objects/object_generators/Game_Object_Spawner.cpp
-      ../game_objects/LTexture.cpp
     }
 
     Header_Files {
@@ -45,7 +44,6 @@ project (Co2dz) {
       ../game_objects/object_generators/Game_Object_Factory.h
       ../game_objects/object_generators/Game_Object_Factory_Easy.h
       ../game_objects/object_generators/Game_Object_Spawner.h
-      ../game_objects/LTexture.h
     }
 
     Template_Files {
