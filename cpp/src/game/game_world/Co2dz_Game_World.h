@@ -64,6 +64,9 @@ private:
   // game objects
   std::vector <Game_Object*> objects_;
 
+  // collision counter
+  Uint32 collision_counter_;
+
   // spawners
   std::vector <Game_Object_Spawner*> spawners_;
 

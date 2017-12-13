@@ -18,6 +18,7 @@ Co2dz_Game_World::Co2dz_Game_World (void)
   , camera_ (0)
   , player_ (0)
   , objects_ (0)
+  , collision_counter_ (0)
   , spawners_ (0)
   , terrain_texture_ (0)
 {
@@ -63,17 +64,18 @@ void Co2dz_Game_World::initialize (void)
 
   // TODO: read from file or database to build terrain and spawners
   // explicitly create spawners
-  Game_Object * prototype1 = this->game_object_factory_->create_enemy(2500, 2000, 3, 100, 100, 95, 100, 80, 355);
-  this->spawners_.push_back(new Game_Object_Spawner(*prototype1, 200));
+  this->objects_.push_back(this->game_object_factory_->create_enemy(100, 100, 3, 100, 100, 95, 100, 80, 355));
+  //Game_Object * prototype1 = this->game_object_factory_->create_enemy(2500, 2000, 3, 100, 100, 95, 100, 80, 355);
+  //this->spawners_.push_back(new Game_Object_Spawner(*prototype1, 200));
 
-  Game_Object * prototype2 = this->game_object_factory_->create_enemy(-2000, 3000, 4, 70, 70, 190, 60, 70, 355);
-  this->spawners_.push_back(new Game_Object_Spawner(*prototype2, 220));
+  //Game_Object * prototype2 = this->game_object_factory_->create_enemy(-2000, 3000, 4, 70, 70, 190, 60, 70, 355);
+  //this->spawners_.push_back(new Game_Object_Spawner(*prototype2, 220));
 
-  Game_Object * prototype3 = this->game_object_factory_->create_enemy(-2250, -2750, 5, 45, 45, 75, 160, 100, 355);
-  this->spawners_.push_back(new Game_Object_Spawner(*prototype3, 180));
+  //Game_Object * prototype3 = this->game_object_factory_->create_enemy(-2250, -2750, 5, 45, 45, 75, 160, 100, 355);
+  //this->spawners_.push_back(new Game_Object_Spawner(*prototype3, 180));
 
-  Game_Object * prototype4 = this->game_object_factory_->create_enemy(3500, -3000, 6, 30, 30, 160, 190, 55, 355);
-  this->spawners_.push_back(new Game_Object_Spawner(*prototype4, 240));
+  //Game_Object * prototype4 = this->game_object_factory_->create_enemy(3500, -3000, 6, 30, 30, 160, 190, 55, 355);
+  //this->spawners_.push_back(new Game_Object_Spawner(*prototype4, 240));
 }
 
 //
@@ -124,10 +126,12 @@ void Co2dz_Game_World::update (SDL_Renderer & renderer, Uint32 lag, Uint32 scree
   this->camera_->update(renderer, screen_width, screen_height, *this->player_);
 
   // update player
+  this->collision_counter_ = 0;
   this->player_->update(*this, *this->camera_);
 
   // update game objects
   for(int i = 0; i < this->objects_.size(); i++) {
+    this->collision_counter_ += 1;
     this->objects_[i]->update(*this, *this->camera_);
   }
 
@@ -142,7 +146,37 @@ void Co2dz_Game_World::update (SDL_Renderer & renderer, Uint32 lag, Uint32 scree
 //
 void Co2dz_Game_World::resolve_collision (Game_Object & object)
 {
-  // TODO: handle collision
+  // resolve collision
+  for(int i = this->collision_counter_; i < this->objects_.size(); i++) {
+    // check if objects collide
+    if( object.get_x() < this->objects_[i]->get_x() + this->objects_[i]->get_width() &&
+        object.get_x() + object.get_width() > this->objects_[i]->get_x() &&
+        object.get_y() > this->objects_[i]->get_y() - this->objects_[i]->get_height() &&
+        object.get_y() - object.get_height() < this->objects_[i]->get_y() ) {
+
+      // calculate velocity angles
+      double vel_angle_1 = atan2(object.get_vel_y(), object.get_vel_x());
+      if(vel_angle_1 < 0) {
+        vel_angle_1 += 2 * M_PI;
+      }
+      double vel_angle_2 = atan2(this->objects_[i]->get_vel_y(), this->objects_[i]->get_vel_x());
+      if(vel_angle_2 < 0) {
+        vel_angle_2 += 2 * M_PI;
+      }
+
+      // check if objects are moving toward each other
+      double angle = vel_angle_1 - vel_angle_2;
+      if( (angle < 0 - M_PI / 2) || (angle > M_PI / 2) ) {
+        // handle collision by swapping velocities
+        int temp_vel_x = object.get_vel_x();
+        int temp_vel_y = object.get_vel_y();
+        object.set_vel_x(this->objects_[i]->get_vel_x());
+        object.set_vel_y(this->objects_[i]->get_vel_y());
+        this->objects_[i]->set_vel_x(temp_vel_x);
+        this->objects_[i]->set_vel_y(temp_vel_y);
+      }
+    }
+  }
 }
 
 //
