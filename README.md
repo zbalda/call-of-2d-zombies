@@ -7,10 +7,23 @@ Call of 2D Zombies is a two-dimensional zombie survival game written in C++ usin
 
 
 ## Goal
-The goal of this project was to refactor a simple two-dimensional game I had created in my Intro to Computing. The purpose was to apply good software design principles, use design patterns where they were suitable, and eliminate as much code rot as possible.
+The goal of this project was to refactor a simple two-dimensional game I created in my Intro to Computing class. The purpose was to apply good software design principles, use design patterns where they were suitable, and eliminate as much code rot as possible.
 
 ## Design
 ![UML_Diagram.png](cpp/src/resources/UML_Diagram.png)
+
+### Overview
+Framework initializes SDL, contains the Game objects, window and renderer, and the main game loop. In each game loop it handles SDL events and updates the appropriate Game object depending on the current game state. Different Game objects and game states can be added for different components of a game (e.g. main menu, game world, game options, etc.). Its not a true framework but it does share an attribute of frameworks by calling on Game objects.   
+
+Each Game object loads its media, handles SDL events given by the Framework, and progresses its state on each update. The update method implemented by each Game object uses the renderer it is given to draw anything to the screen.
+
+The Game World, specifically, holds all of the Game Objects (note: Game World is a Game object, a Game object has Game Objects). When the Game World is updated it updates each of its Game Objects. Game Objects may call back on the Game World to handle collisions. The Game World maintains the creation and deletion of Game Objects using a Game Object Factory and Game Object Spawners.
+
+Each Game Object is a container of Components. When a game object is updated, it updates each of its Components. The Components can handle Input, Physics, AI, and Graphics. The player, for example, is a container of Input, Physics, and Graphics Components. The Game Object container also implements message passing for communication between components.
+
+Each Game Object is also a prototype. The Game World maintains a collections of spawners that it updates after updating all of its Game Objects. A spawner may add an enemy or any other Game Object to the container of Game Objects when it is updated. It also implements a timer to add enemies at adjustable intervals.
+
+### Design patterns
 
 #### MVC and the Game Loop
 The core design patterns of this game, or of most games for that matter, are probably the Model View Controller and the Game Loop. Like most UI programs, this game utilizes the MVC pattern to collect input from the user, update the game model based on that input and render the view. Unlike other event driven UI applications and event driven games, this game also runs on a game loop. Game loops are useful when the game model needs to advance continuously - which is the case here.
@@ -21,6 +34,9 @@ A simple implementation of a game loop might mark the start time of an "MVC cycl
 One problem with this implementation is that it doesn't account for the case in which processing input, updating, and rendering takes longer than the "tick rate" of the game.
 
 Instead of sleeping for the remainder of the cycle, the game loop I have implemented updates and renders the appropriate amount of times on each game loop based on how lagged behind the current state and view of the game is. Lag, in this case, is the number of milliseconds the current game model and view is behind the current time. Lag is updated each game loop, and the game model is only updated and rendered every time the lag reaches the tick rate (i.e. milliseconds per update). After which, lag is updated (i.e. milliseconds per update is subtracted from lag). This implementation handles the case in which the game needs to play "catch up" by dynamically updating and rendering the appropriate amount of times based on how lagged behind it is.
+
+##### Update method
+Explain the update method.
 
 #### Component
 A game world is composed of game objects. Players, enemies, terrian, cameras for rendering views, etc.. My initial idea for structuring these objects was to create a base object class and have all concrete objects inherit from it. I started by creating a base object class with position, velocity, and health. Shortly after, I created a camera object and a static terrain object. I quickly realized that the camera didn't need health, and the static terrain object didn't need velocity. I could move health and velocity into a movable object class, but where would the camera fit into that? The camera needs to move too, but it doesn't make since to give the camera health.
@@ -45,6 +61,8 @@ To implement the prototype pattern I added a clone method to each game object. C
 
 ## Results
 Planning and implementing the game loop and update method took the most time overall. Specifically, the update method was difficult to figure out. I initially planned to update all objects first, then check for collisions. However, because of how the component pattern updates and renders on each update, it made more since to have update and render on each update.
+
+## Challanges
 
 ## Known Problems
 
