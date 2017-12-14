@@ -64,16 +64,20 @@ To implement the prototype pattern I added a clone method to each game object an
 
 
 ## Results
-Planning and implementing the game loop and update method took the most time overall. Specifically, the update method was difficult to figure out. I initially planned to update all objects first, then check for collisions. However, because of how the component pattern updates and renders on each update, it made more since to have update and render on each update.
+The final game runs smoothly and is a big improvement over its predecessor. It does not have all the features I would have liked to implement such as weapons, levels, menues, player profiles, statistics, and maps. However, my goal was never to build a feature packed game but rather to redesign its core components. Game development is more challenging than I would have imagined and I learned a lot from it. This project improved my skills in game development itself and in utilizing good software design patterns and principles. 
 
-## Challanges
+
+## Challenges
+Planning and implementing the game loop and update method took the most time overall. Specifically, the update method was difficult to figure out. I initially planned to update all objects first, then check for collisions. However, because of how the component pattern updates and renders on each update, it made more since to have update and render on each update.
 
 ## Known Problems
 
 #### Collision Detection
-The game world is correctly detecting object collisions but when two objects collide they do not bounce off of each other like they should. Instead they stick together. This is most likely because collisions are detected whenever two objects overlap, even if they are moving away from each other. 
+The game world is correctly detecting object collisions but when two objects collide they do not bounce off of each other like they should. Instead they stick together.
 
 ## Additional Notes
+
+
 
 
 
