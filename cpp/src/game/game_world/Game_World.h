@@ -33,7 +33,7 @@ public:
     virtual void update (SDL_Renderer & renderer, Uint32 lag, Uint32 screen_width, Uint32 screen_height) = 0;
 
     // resolve collision
-    virtual void resolve_collision (Game_Object & object) = 0;
+    virtual bool resolve_collision (Game_Object & object) = 0;
 
     // get players x position
     virtual int get_player_x (void) = 0;

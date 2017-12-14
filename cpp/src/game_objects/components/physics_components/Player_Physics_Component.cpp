@@ -34,7 +34,9 @@ void Player_Physics_Component::recieve (int message)
 void Player_Physics_Component::update (Game_Object & object, Game_World & world, Camera & camera)
 {
   object.move();
-  world.resolve_collision(object);
+  if(world.resolve_collision(object)) {
+    object.move_back();
+  }
 }
 
 //

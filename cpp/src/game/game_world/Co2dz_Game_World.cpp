@@ -34,7 +34,6 @@ Co2dz_Game_World::~Co2dz_Game_World (void)
   // free data
   delete this->game_object_factory_;
   delete this->camera_;
-  delete this->player_;
   delete this->terrain_texture_;
 
   // delete all game objects
@@ -59,7 +58,11 @@ void Co2dz_Game_World::initialize (void)
 {
   // create camera, player, and terrain texture
   this->camera_ = new Camera (15, -500, 600);
+
+  // TODO: store player with other objects
   this->player_ = this->game_object_factory_->create_player();
+  this->objects_.push_back(this->player_);
+
   this->terrain_texture_ = this->game_object_factory_->create_terrain(245, 245, 245, 355);
 
   // TODO: read from file or database to build terrain and spawners
@@ -126,14 +129,14 @@ void Co2dz_Game_World::update (SDL_Renderer & renderer, Uint32 lag, Uint32 scree
 
   // update player
   this->collision_counter_ = 0;
-  this->player_->update(*this, *this->camera_);
+  //this->player_->update(*this, *this->camera_);
 
   // update game objects
   for(int i = 0; i < this->objects_.size(); i++) {
-    this->collision_counter_ += 1;
     if(this->objects_[i]->is_alive()) {
       this->objects_[i]->update(*this, *this->camera_);
     }
+    this->collision_counter_ += 1;
   }
 
   // update spawners
@@ -153,39 +156,32 @@ void Co2dz_Game_World::update (SDL_Renderer & renderer, Uint32 lag, Uint32 scree
 //
 // resolve_collision
 //
-void Co2dz_Game_World::resolve_collision (Game_Object & object)
+bool Co2dz_Game_World::resolve_collision (Game_Object & object)
 {
+  // set to true if collision occurs
+  bool collision = false;
+
   // resolve collision
-  for(int i = this->collision_counter_; i < this->objects_.size(); i++) {
-    // check if objects collide
-    if( object.get_x() < this->objects_[i]->get_x() + this->objects_[i]->get_width() &&
-        object.get_x() + object.get_width() > this->objects_[i]->get_x() &&
-        object.get_y() > this->objects_[i]->get_y() - this->objects_[i]->get_height() &&
-        object.get_y() - object.get_height() < this->objects_[i]->get_y() ) {
+  for(int i = 0; i < this->objects_.size(); i++) {
+    if(i != this->collision_counter_) {
+      // check if objects collide
+      if( object.get_x() < this->objects_[i]->get_x() + this->objects_[i]->get_width() &&
+          object.get_x() + object.get_width() > this->objects_[i]->get_x() &&
+          object.get_y() > this->objects_[i]->get_y() - this->objects_[i]->get_height() &&
+          object.get_y() - object.get_height() < this->objects_[i]->get_y() ) {
 
-      // calculate velocity angles
-      double vel_angle_1 = atan2(object.get_vel_y(), object.get_vel_x());
-      if(vel_angle_1 < 0) {
-        vel_angle_1 += 2 * M_PI;
-      }
-      double vel_angle_2 = atan2(this->objects_[i]->get_vel_y(), this->objects_[i]->get_vel_x());
-      if(vel_angle_2 < 0) {
-        vel_angle_2 += 2 * M_PI;
-      }
+        // set collision to true
+        collision = true;
 
-      // check if objects are moving toward each other
-      double angle = vel_angle_1 - vel_angle_2;
-      if( (angle < 0 - M_PI / 2) || (angle > M_PI / 2) ) {
-        // handle collision by swapping velocities
-        int temp_vel_x = object.get_vel_x();
-        int temp_vel_y = object.get_vel_y();
+        // swap velocity
         object.set_vel_x(this->objects_[i]->get_vel_x());
         object.set_vel_y(this->objects_[i]->get_vel_y());
-        this->objects_[i]->set_vel_x(temp_vel_x);
-        this->objects_[i]->set_vel_y(temp_vel_y);
       }
     }
   }
+
+  // true if collision occured
+  return collision;
 }
 
 //

@@ -66,6 +66,11 @@ public:
   void move (void);
 
   /*
+   * Moves object back one step.
+   */
+  void move_back (void);
+
+  /*
    * Get x position of object.
    *
    * @return    x_    Objects x position
@@ -154,6 +159,9 @@ private:
 
   // object position
   int x_, y_;
+
+  // objects previous position
+  int prev_x_, prev_y_;
 
   // object velocity
   int vel_x_, vel_y_;

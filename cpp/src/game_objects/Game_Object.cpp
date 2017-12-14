@@ -19,6 +19,8 @@ Game_Object::Game_Object (std::vector<Component*> components, int x, int y, int 
   : components_ (components)
   , x_ (x)
   , y_ (y)
+  , prev_x_(0)
+  , prev_y_ (0)
   , vel_x_ (vel_x)
   , vel_y_ (vel_y)
   , max_velocity_ (max_velocity)

@@ -29,9 +29,24 @@ void Game_Object::kill (void)
 inline
 void Game_Object::move (void)
 {
+  // track previous position
+  this->prev_x_ = this->x_;
+  this->prev_y_ = this->y_;
+
   // move object by its velocities
   this->x_ += this->vel_x_;
   this->y_ += this->vel_y_;
+}
+
+//
+// move_back
+//
+inline
+void Game_Object::move_back (void)
+{
+  // move object back
+  this->x_ = this->prev_x_;
+  this->y_ = this->prev_y_;
 }
 
 //

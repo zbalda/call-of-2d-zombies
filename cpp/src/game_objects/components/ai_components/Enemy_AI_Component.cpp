@@ -57,7 +57,9 @@ void Enemy_AI_Component::update (Game_Object & object, Game_World & world, Camer
 
   // move and check collision
   object.move();
-  world.resolve_collision(object);
+  if(world.resolve_collision(object)) {
+    object.move_back();
+  }
 }
 
 //
