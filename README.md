@@ -70,6 +70,9 @@ Planning and implementing the game loop and update method took the most time ove
 
 ## Known Problems
 
+#### Collision Detection
+The game world is correctly detecting object collisions but when two objects collide they do not bounce off of each other like they should. Instead they stick together. This is most likely because collisions are detected whenever two objects overlap, even if they are moving away from each other. 
+
 ## Additional Notes
 
 
