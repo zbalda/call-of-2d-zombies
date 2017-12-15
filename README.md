@@ -74,7 +74,7 @@ Designing and implementing the game loop and update method took the longest time
 
 Collision detection and collision physics were tricky to figure out as well. I originally planned on updating an object, then swapping velocities with any object it overlaps with. This issue with this implementation is that two objects that are moving away from each other after just colliding but are still overlapping will swap velocities again. They end up getting caught in a velocity swap loop and stick together. To fix this I implemented a 'move back' method in the Game Object. If a game object collides with another object, its velocity is updated and it is moved back one step. This way, objects never really overlap.
 
-Time was also a challenge. MPC took longer to get familiar with and took up more time during development than I was expecting. As frustrating as it could be at times, I feel well acquainted with it now. 
+Time was also a challenge. MPC took longer to get familiar with and took up more time during development than I was expecting. As frustrating as it could be at times, I feel well acquainted with it now.
 
 
 ## Known Problems
@@ -86,6 +86,9 @@ A player has an x and y position on the map as well as x and y velocities. At ea
 
 One solution is to store velocities, acceleration, and positions as floats and round them when rendering. Another would be to create a virtual grid system with higher precision that the game model operates on and scale down when rendering.
 
+#### Coupling between Game Objects and the Game World
+Enemies need to follow the player and to do that they need to know the players position. Currently, they are using methods in the game world to get the player position. This tightly couples enemies with the game world. If more players needed to be added or enemies needed to follow a different game object, this coupling would need to be refactored.
+
 #### Unused Capabilities
 When designing the game, I planned to have more features than I had time to implement. Thus, there is underlying support for capabilities that are not fully implemented. These are:
 
@@ -93,24 +96,21 @@ When designing the game, I planned to have more features than I had time to impl
 Ideally, the Framework has a state and updates and renders the appropriate Game object based on its state. These states and Game objects could be menues, options, game world, etc.. The only one implemented is the game world.
 
 2. Components that don't communicate
-Some Game Object components might need to communicate with each other. Such as when physics happens before rendering and the physics component needs to tell the graphics component not to render the current object because it died. Message passing between components is implemented for cases like these but is not used.
+Some Game Object components might need to communicate with each other. Such as when physics happens before rendering and the physics component needs to tell the graphics component not to render the current object because it died. Message passing between components is implemented for cases like these but is not used.   
 
-3. Coupling between Game Objects and the Game World
-Enemies need to follow the player and to do that they need to know the players position. Currently, they are using methods in the game world to get the player position. This tightly couples enemies with the game world. If more players needed to be added or enemies needed to play in a different world, code would have to be refactored.   
-was challenging as it took some time to get familiar with
-4. Dynamic rendering based on lag
+3. Dynamic rendering based on lag
 When an object is updated it is given lag. Lag in this case is the amount of time the most recently updated and rendered game world is behind the current time. Knowing the lag can be useful when rendering. A graphics component could use this to try to predict where to render itself. This feature is never implemented.
 
-5. Removing objects
+4. Removing objects
 I would have liked the player to have a weapon to shoot and kill enemies and for those enemies to be remove from the game world. To implement this, each object has an 'alive' boolean and a 'kill' method. However, since weapons are not implemented objects never die.
 
-6. Event handling
+5. Event handling
 The game world has a queue of events to handle at each update but does not use the events. Instead it only relies on the keyboard state.
 
-7. Restarting
+6. Restarting
 Restart methods are declared throughout but are not implemented. Instead, the user has to close the program and open it again to restart.
 
-8. Explicitly rendering the map
+7. Explicitly rendering the map
 Currently, the map background texture is hundreds of rectangles rendered over hundreds of pixels. I hacked this together to make it easier to see the players movement. Ideally, the only part of the map that should be rendered is the part visible on the players screen.
 
 
