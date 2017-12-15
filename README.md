@@ -114,12 +114,6 @@ Restart methods are declared throughout but are not implemented. Instead, the us
 Currently, the map background texture is hundreds of rectangles rendered over hundreds of pixels. I hacked this together to make it easier to see the players movement. Ideally, the only part of the map that should be rendered is the part visible on the players screen.
 
 
-## Additional Notes
-
-
-
-
-
 ## Other
 
 ### Useful Resources
@@ -147,13 +141,13 @@ Currently, the map background texture is hundreds of rectangles rendered over hu
 
 `sudo apt install libsdl2-dev`
 
-##### SDL Image Install
+###### SDL Image Install
 
 `apt-cache search libsdl2-image`
 
 `sudo apt install libsdl2-image-dev`
 
-##### SDL Fonts Install
+###### SDL Fonts Install
 
 `apt-cache search libsdl2-ttf`
 
