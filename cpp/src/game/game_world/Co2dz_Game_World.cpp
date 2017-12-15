@@ -65,19 +65,20 @@ void Co2dz_Game_World::initialize (void)
 
   this->terrain_texture_ = this->game_object_factory_->create_terrain(245, 245, 245, 355);
 
-  // TODO: read from file or database to build terrain and spawners
-  // explicitly create spawners
-  Game_Object * prototype1 = this->game_object_factory_->create_enemy(2500, 2000, 3, 100, 100, 95, 100, 80, 355);
-  this->spawners_.push_back(new Game_Object_Spawner(*prototype1, 200));
 
-  Game_Object * prototype2 = this->game_object_factory_->create_enemy(-2000, 3000, 4, 70, 70, 190, 60, 70, 355);
-  this->spawners_.push_back(new Game_Object_Spawner(*prototype2, 220));
+  // ints to get from file
+  int x, y, speed, h, w, r, g, b, a, delay;
 
-  Game_Object * prototype3 = this->game_object_factory_->create_enemy(-2250, -2750, 5, 45, 45, 75, 160, 100, 355);
-  this->spawners_.push_back(new Game_Object_Spawner(*prototype3, 180));
+  // file stream
+  std::ifstream spawners_config("../resources/spawners.cfg");
 
-  Game_Object * prototype4 = this->game_object_factory_->create_enemy(3500, -3000, 6, 30, 30, 160, 190, 55, 355);
-  this->spawners_.push_back(new Game_Object_Spawner(*prototype4, 240));
+  // read from file and create spawners
+  Game_Object * prototype;
+  while(spawners_config >> x >> y >> speed >> h >> w >> r >> g >> b >> a >> delay) {
+    // create spawner
+    prototype = this->game_object_factory_->create_enemy(x, y, speed, h, w, r, g, b, a);
+    this->spawners_.push_back(new Game_Object_Spawner(*prototype, delay));
+  }
 }
 
 //

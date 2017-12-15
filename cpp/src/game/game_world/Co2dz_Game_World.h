@@ -8,6 +8,8 @@
 #ifndef _CO2DZ_GAME_WORLD_H_
 #define _CO2DZ_GAME_WORLD_H_
 
+#include <fstream>
+
 #include "Game_World.h"
 #include "../../game_objects/Camera.h"
 #include "../../game_objects/object_generators/Game_Object_Factory.h"
