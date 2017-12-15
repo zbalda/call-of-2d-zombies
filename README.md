@@ -133,6 +133,14 @@ Currently, the map background texture is hundreds of rectangles rendered over hu
 
 #### [SDL](https://www.libsdl.org/)
 
+##### SDL Intall
+
+#### [SDL2 Download](https://www.libsdl.org/download-2.0.php)
+
+#### [SDL Image Download](https://www.libsdl.org/projects/SDL_image/)
+
+#### [SDL Fonts Download](https://www.libsdl.org/projects/SDL_ttf/)
+
 ##### SDL Install on Ubuntu
 
 `apt-cache search libsdl2`
