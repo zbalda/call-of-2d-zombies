@@ -64,7 +64,7 @@ To implement the prototype pattern I added a clone method to each game object an
 
 
 ## Results
-The final game runs smoothly and is a big improvement over its predecessor. It does not have all the features I would have liked to implement such as weapons, levels, menues, player profiles, statistics, and maps. However, my goal was never to build a feature packed game but rather to redesign its core components. Game development is more challenging than I would have imagined and I learned a lot from it. This project improved my skills in game development itself and in utilizing good software design patterns and principles. 
+The final game runs smoothly and is a big improvement over its predecessor. It does not have all the features I would have liked to implement such as weapons, levels, menues, player profiles, statistics, and maps. However, my goal was never to build a feature packed game but rather to redesign its core components. Game development is more challenging than I would have imagined and I learned a lot from it. This project improved my skills in game development itself and in utilizing good software design patterns and principles.
 
 
 ## Challenges
@@ -72,8 +72,37 @@ Planning and implementing the game loop and update method took the most time ove
 
 ## Known Problems
 
-#### Collision Detection
-The game world is correctly detecting object collisions but when two objects collide they do not bounce off of each other like they should. Instead they stick together.
+#### Collision Physics
+The game world is correctly detecting object collisions but when two objects collide they do not bounce off of each other like they should. They sort of just stick together. This has to do with a lack of precision in the map grid.
+
+A player has an x and y position on the map as well as x and y velocities. At each game tick the player updates its velocities based on user input and then adds its x and y velocities to its x and y positions respectively. Since velocities and positions are stored as integers, the smallest amount of acceleration that can be added to or subtracted from each of the velocities is 1. And since the game runs at 50 frames per second its velocity only needs to be 24 (1200px / 50) for it to cross the entire screen (horizontally) in one second. For this example, it would only take half a second for an object to reach this speed, which is way too fast for smooth game play. To fix this, I have the players velocities capped at 8 and enemy velocity capped below that. In consequence, when a player moves in one direction, it only takes a fraction of a second to reach max velocity. Even worse, when a player bounces off another object it only takes a fraction of a second for the player to "take control" back over its velocity. The bounce that should be seen is practically unnoticeable.
+
+One solution is to store velocities, acceleration, and positions as floats and round them when rendering. Another would be to create a virtual grid system with higher precision that the game model operates on and scale down when rendering.
+
+#### Unused Capabilities
+When designing the game, I planned to have more features than I had time to implement. Thus, there is underlying support for capabilities that are not fully implemented. These are:
+
+1. Game models
+Ideally, the Framework has a state and updates and renders the appropriate Game object based on its state. These states and Game objects could be menues, options, game world, etc.. The only one implemented is the game world.
+
+2. Components that don't communicate
+Some Game Object components might need to communicate with each other. Such as when physics happens before rendering and the physics component needs to tell the graphics component not to render the current object because it died. Message passing between components is implemented for cases like these but is not used.
+
+3. Dynamic rendering based on lag
+When an object is updated it is given lag. Lag in this case is the amount of time the most recently updated and rendered game world is behind the current time. Knowing the lag can be useful when rendering. A graphics component could use this to try to predict where to render itself. This feature is never implemented.
+
+4. Removing objects
+I would have liked the player to have a weapon to shoot and kill enemies and for those enemies to be remove from the game world. To implement this, each object has an 'alive' boolean and a 'kill' method. However, since weapons are not implemented objects never die.
+
+5. Event handling
+The game world has a queue of events to handle at each update but does not use the events. Instead it only relies on the keyboard state.
+
+6. Restarting
+Restart methods are declared throughout but are not implemented. Instead, the user has to close the program and open it again to restart.
+
+7. Explicitly rendering the map
+Currently, the map background texture is hundreds of rectangles rendered over hundreds of pixels. I hacked this together to make it easier to see the players movement. Ideally, the only part of the map that should be rendered is the part visible on the players screen.
+
 
 ## Additional Notes
 
