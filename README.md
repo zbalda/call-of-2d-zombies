@@ -105,7 +105,7 @@ When an object is updated it is given lag. Lag in this case is the amount of tim
 I would have liked the player to have a weapon to shoot and kill enemies and for those enemies to be remove from the game world. To implement this, each object has an 'alive' boolean and a 'kill' method. However, since weapons are not implemented objects never die.
 
 5. Event handling
-The game world has a queue of events to handle at each update but does not use the events. Instead it only relies on the keyboard state.
+The game world has a queue of events to handle at each update but does not use the events. Instead it relies solely on the keyboard state.
 
 6. Restarting
 Restart methods are declared throughout but are not implemented. Instead, the user has to close the program and open it again to restart.
